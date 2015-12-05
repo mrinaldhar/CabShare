@@ -61,7 +61,7 @@ body, html {
 	padding-left: 5px;
 }
 .header .btn {
-	border: 2px solid #0091EA;
+	border: 1px solid #0091EA;
 	box-shadow: 0 0 3px black;
 }
 .btn {
@@ -75,11 +75,11 @@ body, html {
 	color: white;
 	font-family: myriadpro;
 	cursor: pointer;
-	border: 2px solid black;
+	border: 1px solid black;
 }
 .btn:hover {
 	color: black;
-	border: 2px solid black;
+	border: 1px solid black;
 	background-color: rgba(255,255,255,0.9);
 }
 .anim {
