@@ -47,7 +47,7 @@
 <?php require_once('header.php'); ?>
 
 <div class="container">
-<form id="login_form" action="login.php">
+<form id="login_form" action="login.php" method="POST">
 	<span id="page_title">Login using your IIIT-H credentials</span>
 <input type="text" placeholder="The part before the @ in your IIIT-H email address" name="username" />
 <input type="password" placeholder="Your password" name="password" />
