@@ -57,7 +57,7 @@ input {
 }
 #form_table {
 	width: 100%;
-
+	padding-bottom: 100px;
 }
 #time {
 	display: block;
@@ -74,7 +74,13 @@ input {
 #right-panel {
 	display: block;
 }
-
+.ui-slider-handle, .ui-state-default, .ui-corner-all{
+	z-index: 1;
+	outline-width: 0px;
+}
+.footer {
+	z-index: 999;
+}
 
 </style>
 </head>
@@ -98,17 +104,6 @@ input {
 				<td width="30%">
 				</td>
 				<td valign="top" rowspan="9" width="40%" style="vertical-align: top; padding-left: 15px; text-align: center;">
-					<div id="floating-panel">
-				      <strong>Start:</strong>
-				      <select id="start">
-				        <option value="chicago, il">Chicago</option>
-				      </select>
-				      <br>
-				      <strong>End:</strong>
-				      <select id="end">
-				        <option value="chicago, il">Chicago</option>
-				      </select>
-				    </div>
 				    <div id="map"></div>
 					<div id="right-panel"></div>
 
@@ -137,7 +132,7 @@ input {
 
 			<tr>
 				<td width="30%">
-					Time:
+					Time:<br /><small>(When are you comfortable with the cab arriving?)</small>
 				</td>
 				<td width="30%">
 					<div id="slider-range"></div>
@@ -151,7 +146,7 @@ input {
 					Date:
 				</td>
 				<td width="30%">
-			        <input type="text" id="datepicker" class="picker" name="date" placeholder="When will you be travelling?"></div>
+			        <input type="text" id="datepicker" class="picker" name="date" placeholder="What date do you want a cab for?"></div>
 				</td>
 			</tr>
 
@@ -325,27 +320,29 @@ slideTime();
   });
 </script>
 <script>
+var typingTimer;                //timer identifier
+var doneTypingInterval = 5000;  //time in ms, 5 second for example
+//on keyup, start the countdown
+
+
 function initMap() {
 
   var directionsDisplay = new google.maps.DirectionsRenderer;
   var directionsService = new google.maps.DirectionsService;
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 7,
-    center: {lat: 41.85, lng: -87.65}
+    zoom: 14,
+    center: {lat: 17.4456, lng: 78.3497}
   });
   // google.maps.event.trigger(map, 'resize')
   directionsDisplay.setMap(map);
-  directionsDisplay.setPanel(document.getElementById('right-panel'));
-
-  var control = document.getElementById('floating-panel');
-  control.style.display = 'block';
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+  // directionsDisplay.setPanel(document.getElementById('right-panel'));
 
   var onChangeHandler = function() {
     calculateAndDisplayRoute(directionsService, directionsDisplay);
   };
-  document.getElementById('start').addEventListener('change', onChangeHandler);
-  document.getElementById('end').addEventListener('change', onChangeHandler);
+	// document.getElementById('autocomplete2').addEventListener('change', function() { console.log('hi'); });
+  // document.getElementById('start').addEventListener('onFocus', onChangeHandler);
+  document.getElementById('autocomplete2').addEventListener('change', onChangeHandler);
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
