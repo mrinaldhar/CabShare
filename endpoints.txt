@@ -46,3 +46,22 @@ response: {
 	}
 }
 
+5. /addTrip
+request: {
+	source_addr: "String",
+	dest_addr: "String", 
+	date: "String", 
+	time: "String - String"
+	phone_number: "" or "String", 
+	travellers: "String",
+	comments: "String"
+}
+response: {
+	status: 0, 
+	data: {
+		message: "Added new trip"
+	}
+}
+
+6. /editTrip 
+							// Need to add. 
