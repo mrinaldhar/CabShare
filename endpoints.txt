@@ -19,7 +19,7 @@ request: {
 response: {
 	status: 1, 
 	data: {
-		error_msg: "Could not be sent. Server error."
+		errorMsg: "Could not be sent. Server error."
 	}
 }
 
@@ -28,7 +28,7 @@ request: {}
 response: {
 	status: 0, 
 	data: {
-		tripID: 01, 
+		tripId: 01, 
 		... (All details about !!latest!! trip of currently logged in user)
 	}
 }
@@ -60,6 +60,7 @@ response: {
 	status: 0, 
 	data: {
 		message: "Added new trip"
+        tripId: 13
 	}
 }
 
