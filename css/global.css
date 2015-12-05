@@ -56,6 +56,9 @@ body {
 	font-size: 0.7em;
 	padding-left: 5px;
 }
+.header .btn {
+	box-shadow: 0 0 3px black;
+}
 .btn {
 	border: 2px solid #0091EA;
 	background-color: rgba(0,0,0,0.3);
@@ -67,10 +70,10 @@ body {
 	color: white;
 	font-family: quickbold;
 	cursor: pointer;
-	box-shadow: 0 0 3px black;
 }
 .btn:hover {
 	color: #0091EA;
+	border: 2px solid black;
 	background-color: rgba(255,255,255,0.9);
 }
 .anim {
@@ -95,5 +98,8 @@ body {
 	font-family: quickbold;
 	font-size: 2em;
 	display: block;
-	
+
+}
+.blue1 {
+	color: #40C4FF;
 }

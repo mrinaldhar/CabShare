@@ -1,7 +1,7 @@
 <?php
 require_once("./utils/ldap.php");
 require_once("./utils/userhelper.php");
-	if (isLoggedIn()) {
+	if (isLoggedIn()):
 ?>
 		<table class="header">
 			<tr>
@@ -20,13 +20,13 @@ require_once("./utils/userhelper.php");
 		</table>
 
 <?php
-	}
-	else {
+	else:
 ?>
 
 		<table class="header">
 			<tr>
 				<td width="30%">
+					<small>Helped <span id="completed_people" class="blue1">0 people</span> complete <span id="completed_trips" class="blue1">0 trips</span> so far...</small>
 				</td>
 				<td width="40%">
 					<span id="logo_top">Cab Share<span id="iiith">@IIIT-H</span></span>
@@ -38,5 +38,5 @@ require_once("./utils/userhelper.php");
 		</table>
 
 <?php
-}
+	endif;
 ?>
