@@ -22,3 +22,27 @@ response: {
 		error_msg: "Could not be sent. Server error."
 	}
 }
+
+3. /getTrip
+request: {}
+response: {
+	status: 0, 
+	data: {
+		tripID: 01, 
+		... (All details about !!latest!! trip of currently logged in user)
+	}
+}
+
+4. /matchTrip
+request: {}
+response: {
+	status: 0, 
+	data: {
+		[
+			{ trip 1 }, 
+			{ trip 2 }, 			// These trips must be in same format as /getTrip's response["data"]
+			{ trip 3 }
+		]
+	}
+}
+
