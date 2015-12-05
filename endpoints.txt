@@ -1,0 +1,24 @@
+Spec sheet for the endpoints required. 
+
+1. /count
+request: { }
+response: { 
+	status: 0, 
+	data: {
+			people: 123,
+			trips: 44
+	}
+}
+
+2. /email 
+request: {
+	to: "xx@xx.com",
+	subject: "Hello",
+	content: "Hello"
+}
+response: {
+	status: 1, 
+	data: {
+		error_msg: "Could not be sent. Server error."
+	}
+}
