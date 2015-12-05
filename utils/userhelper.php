@@ -14,4 +14,7 @@ function getMailId() {
 function getName() {
 		return $_SESSION['ldapstuff'][0]['givenname'][0];
 }
+function isLoggedIn() {
+		return isset($_SESSION['ldapstuff']);
+}
 ?>
