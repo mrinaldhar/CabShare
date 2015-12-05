@@ -2,94 +2,58 @@
 <html>
 <head>
 <title>Cab Share</title>
+<link rel="stylesheet" href="./css/global.css" />
 <style>
-@font-face {
-	src: url('./fonts/myriadl.otf');
-	font-family: myriadl;
-}
-@font-face {
-	src: url('./fonts/quickbold.otf');
-	font-family: quickbold;
-}
-body {
-	padding: 0; 
-	margin: 0;
-	overflow: none;
-	font-family: myriadl;
-	background-color: #e0e0e0;
-}
-.footer {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
+#login_form {
 	width: 100%;
-	text-align: center;
-	font-family: quickbold;
-	background-color: rgba(0,0,0,0.8);
-	padding-top: 7px;
-	padding-bottom: 7px;
-	color: white;
-	/*box-shadow: 0 0 1px black;*/
-	border-top: 3px solid black;
-	font-size: 0.9em;
 }
-.footer a {
-	color: #40C4FF;
-	text-decoration: none;
-}
-.footer a:hover {
-	color: #80D8FF;
-}
-.header {
-	font-family: quickbold;
-	position: fixed;
-	top: 0px;
+#login_form input {
+	display: block;
 	width: 100%;
-	left: 0px;
-	border-bottom: 3px solid #0091EA;
-	background-color: rgba(0,0,0,0.8);
-	color: white;
-	padding: 7px;
-	padding-left: 20px;
-	padding-right: 20px;
-	text-align: center;
-}
-#logo_top {
-	font-size: 1.5em;
-}
-#iiith {
-	font-size: 0.7em;
-	padding-left: 5px;
-}
-.btn {
+	/*padding: 10px;*/
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
 	border: 2px solid #0091EA;
-	background-color: rgba(0,0,0,0.3);
 	border-radius: 3px;
-	padding-top: 6px;
-	padding-bottom: 6px;
-	padding-left: 13px;
-	padding-right: 13px;
-	color: white;
 	font-family: quickbold;
-	cursor: pointer;
-	box-shadow: 0 0 3px black;
+	outline-width: 0px;
+	font-size: 0.9em;
+	margin-top: 5px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
 }
-.btn:hover {
-	color: #0091EA;
-	background-color: rgba(255,255,255,0.9);
+#login_form input:active {
+	box-shadow: 0 0 1px black;
 }
-.anim {
-  -o-transition:.5s;
-  -ms-transition:.5s;
-  -moz-transition:.5s;
-  -webkit-transition:.5s;
-  transition:.5s;
+.submit-btn {
+	background-color: #0091EA;
+	box-shadow: 0 0 0px black;
+}
+.container {
+	left: 33%;
+	text-align: center;
+	width: 33%;
+	top: 30%;
+}
+#page_title {
+	padding-bottom: 30px;
+	display: block;
 }
 </style>
 </head>
 <body>
 <?php require_once('header.php'); ?>
 
+<div class="container">
+<form id="login_form" action="login.php">
+	<span id="page_title">Login using your IIIT-H credentials</span>
+<input type="text" placeholder="The part before the @ in your IIIT-H email address" name="username" />
+<input type="password" placeholder="Your password" name="password" />
+<input type="submit" class="btn anim submit-btn" value="Login" />
+</form>
+</div>
 
 <?php require_once('footer.php'); ?>
 </body>

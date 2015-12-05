@@ -1,3 +1,6 @@
+<?php
+?>
+
 <table class="header">
 	<tr>
 		<td width="30%">
@@ -9,7 +12,10 @@
 <span id="logo_top">Cab Share<span id="iiith">@IIIT-H</span></span>
 		</td>
 		<td width="30%">
-			<button class="btn anim">Logout Mrinal Dhar</button>
+			<button class="btn anim">Logout: Mrinal Dhar</button>
 		</td>
 	</tr>
 </table>
+
+<?php 
+?>
