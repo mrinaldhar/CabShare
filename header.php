@@ -5,7 +5,7 @@
 		<table class="header">
 			<tr>
 				<td width="30%">
-					<button class="btn anim">+ New trip</button>
+					<a href="./new_trip.php"><button class="btn anim">+ New trip</button></a>
 					<button class="btn anim">View current status</button>
 					<button class="btn anim">All other poolers</button>
 				</td>
