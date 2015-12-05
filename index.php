@@ -17,6 +17,7 @@ require_once("./utils/userhelper.php");
 <div class="container">
 <form id="login_form" action="login.php" method="POST">
 	<span id="page_title">Login using your IIIT-H credentials</span>
+	<span id="page_content">
 	<?php
 		if (isset($_GET['err'])):
 	?>
@@ -27,6 +28,7 @@ require_once("./utils/userhelper.php");
 	<input type="text" placeholder="The part before the @ in your IIIT-H email address" name="username" />
 	<input type="password" placeholder="Your password" name="password" />
 	<input type="submit" class="btn anim submit-btn" value="Login" />
+	</span>
 </form>
 </div>
 
