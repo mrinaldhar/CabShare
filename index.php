@@ -1,3 +1,9 @@
+<?php 
+error_reporting(E_ALL);
+session_start();
+require_once("./utils/ldap.php");
+require_once("./utils/userhelper.php");
+?>
 <!doctype html>
 <html>
 <head>
@@ -49,9 +55,16 @@
 <div class="container">
 <form id="login_form" action="login.php" method="POST">
 	<span id="page_title">Login using your IIIT-H credentials</span>
-<input type="text" placeholder="The part before the @ in your IIIT-H email address" name="username" />
-<input type="password" placeholder="Your password" name="password" />
-<input type="submit" class="btn anim submit-btn" value="Login" />
+	<?php
+		if (isset($_GET['err'])):
+	?>
+	<span id="error">Oops. We couldn't recognize your username/password combo.<br />Try again.</span>
+	<?php
+		endif;
+	?>
+	<input type="text" placeholder="The part before the @ in your IIIT-H email address" name="username" />
+	<input type="password" placeholder="Your password" name="password" />
+	<input type="submit" class="btn anim submit-btn" value="Login" />
 </form>
 </div>
 

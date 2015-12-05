@@ -2,8 +2,7 @@
 require_once('userhelper.php');
 function login($user, $password) {
 
-    // Just starting a session, cause TeeHee :D
-    session_start();
+
 	if(empty($user) || empty($password)) return false;
 
 	$ldap_host = "ldap.iiit.ac.in";

@@ -10,7 +10,7 @@ body {
 	padding: 0; 
 	margin: 0;
 	overflow: none;
-	font-family: myriadl;
+	font-family: quickbold;
 	background-color: #e0e0e0;
 }
 .footer {
@@ -102,4 +102,10 @@ body {
 }
 .blue1 {
 	color: #40C4FF;
+}
+#error {
+	font-size: 0.8em;
+	margin-bottom: 20px;
+	display: block;
+	color: #D50000;
 }
