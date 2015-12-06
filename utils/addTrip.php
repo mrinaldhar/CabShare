@@ -13,9 +13,10 @@ function addTripToDb($source, $destination, $date, $time, $phone, $travellers, $
         return;
     }
 
-    $query = "INSERT INTO " . " new_cab_share " . " (userid, source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $travellers . "')";
-	// echo $query . "\n";
-	include "config.php";
+    include "config.php";
+
+    $query = "INSERT INTO " . $db_mysql_table_name . " (userid, source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $travellers . "')";
+
 	$success = mysqli_query($link, $query);
 	if($success) {
 			$tripId = mysqli_insert_id($link);

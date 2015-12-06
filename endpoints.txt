@@ -32,6 +32,10 @@ response: {
 		... (All details about !!latest!! trip of currently logged in user)
 	}
 }
+response: {
+        status: 1,
+            error: "Unable to run select in DB" | "Invalid session"
+}
 
 4. /matchTrip
 request: {}
@@ -65,7 +69,7 @@ response: {
 }
 response: {
     status: 1,
-    error: "Couldnt insert to DB" | "Invalid session"
+    error: "Unable to insert into DB" | "Invalid session"
 }
 
 6. /editTrip 
