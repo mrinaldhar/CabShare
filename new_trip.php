@@ -19,41 +19,14 @@ if (!isLoggedIn()) {
 
 
 <style>
-body, html {
-	height: 100%;
-	width: 100%;
-}
-.btn {
-	background-color: rgba(0,0,0,0.8);
-}
-.container {
-	display: block;
-}
 #form_table {
-	margin-top: 70px;
+	margin-top: 20px;
 	width: 100%;
 	max-width: 100%;
 }
 #form_table tr td {
 	padding-top: 10px;
 	padding-bottom: 10px;
-}
-input {
-	display: block;
-	width: 100%;
-	/*padding: 10px;*/
-	padding-top: 10px;
-	padding-bottom: 10px;
-	padding-left: 10px;
-	border: 2px solid #0091EA;
-	border-radius: 3px;
-	font-family: quickbold;
-	outline-width: 0px;
-	font-size: 0.9em;
-	margin-top: 5px;
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;         /* Opera/IE 8+ */
 }
 #form_table {
 	width: 100%;
@@ -78,9 +51,7 @@ input {
 	z-index: 1;
 	outline-width: 0px;
 }
-.footer {
-	z-index: 999;
-}
+
 
 </style>
 </head>
@@ -356,7 +327,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     if (status === google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
     } else {
-      window.alert('Directions request failed due to ' + status);
+      console.log('Directions request failed due to ' + status);
     }
   });
 }
