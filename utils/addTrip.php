@@ -14,7 +14,7 @@ function addTripToDb($source, $destination, $date, $time, $phone, $travellers, $
     }
 
     $query = "INSERT INTO " . " new_cab_share " . " (userid, source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $travellers . "')";
-	echo $query . "\n";
+	// echo $query . "\n";
 	include "config.php";
 	$success = mysqli_query($link, $query);
 	if($success) {
