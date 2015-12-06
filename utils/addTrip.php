@@ -1,28 +1,40 @@
 <?php
 
+require_once("ldap.php");
+require_once("userhelper.php");
+
 function addTripToDb($source, $destination, $date, $time, $phone, $travellers, $comment) {
-    $query = "INSERT INTO " . " new_cab_share " . " (source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $travellers . "')";
-		echo $query . "\n";
-		include "config.php";
-		$success = mysqli_query($link, $query);
-		if($success) {
-				$tripId = mysqli_insert_id($link);
-				$data = array(
-						"message" => "Added new trip",
-						"tripId" => $tripId
-				);
-				$response = array(
-						array(
-							"status" => "0",
-							"data" => $data
-						)
-				);
-				echo json_encode($response);
+    
+    if(!isLoggedIn()) {
+        $response = array(
+            "status" => "1",
+            "error" => "Invalid session" );
+        echo json_encode($response);
+        return;
+    }
+
+    $query = "INSERT INTO " . " new_cab_share " . " (userid, source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $travellers . "')";
+	echo $query . "\n";
+	include "config.php";
+	$success = mysqli_query($link, $query);
+	if($success) {
+			$tripId = mysqli_insert_id($link);
+			$data = array(
+				"message" => "Added new trip",
+                "tripId" => $tripId );
+
+			$response = array(
+						"status" => "0",
+						"data" => $data );
+
+            echo json_encode($response);
     }
     else {
-        echo "problem";
+        $response = array(
+            "status" => "1",
+            "error" => "Unable to insert into DB" );
+        echo json_encode($response);
     }
-    //mysql_close($link);
 }
 
 // We get all our parameters here and then use them to insert.

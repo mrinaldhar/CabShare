@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS `new_cab_share`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `new_cab_share` (
   `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `userid` varchar(50) NOT NULL,
   `source_addr` varchar(50) NOT NULL,
   `dest_addr` varchar(50) NOT NULL,
   `date` varchar(50) NOT NULL,
