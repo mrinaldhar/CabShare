@@ -15,45 +15,7 @@ if (!isLoggedIn()) {
 <link rel="stylesheet" href="./css/datepicker.css" />
 <link rel="stylesheet" href="./css/datetheme.css" />
 <link rel="stylesheet" href="./css/jqueryui.css" />
-
-
-
-<style>
-#form_table {
-	margin-top: 20px;
-	width: 100%;
-	max-width: 100%;
-}
-#form_table tr td {
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-#form_table {
-	width: 100%;
-	padding-bottom: 100px;
-}
-#time {
-	display: block;
-	margin-top: 10px;
-}
-#page_content {
-	text-align: center;
-}
-
-#map {
-	height: 400px;
-	display: block;
-      }
-#right-panel {
-	display: block;
-}
-.ui-slider-handle, .ui-state-default, .ui-corner-all{
-	z-index: 1;
-	outline-width: 0px;
-}
-
-
-</style>
+<link rel="stylesheet" href="./css/new_trip.css" />
 </head>
 <body>
 <?php require_once('header.php'); ?>
@@ -81,7 +43,6 @@ if (!isLoggedIn()) {
 				</td>
 			</tr>
 
-
 			<tr>
 				<td width="30%">
 					Trip starts from: 
@@ -91,7 +52,8 @@ if (!isLoggedIn()) {
 						             onFocus="geolocate()" type="text" name="source_addr"></input>
 				</td>
 			</tr>
-			<tr>
+			
+      <tr>
 				<td width="30%">
 					Trip ends at: 
 				</td>
@@ -156,11 +118,6 @@ if (!isLoggedIn()) {
 				</td>
 			</tr>
 
-
-			
-
-
-
 		</table>
 	</form>
 </div>
@@ -178,10 +135,11 @@ if (!isLoggedIn()) {
 <script src="./js/helper.js"></script>
 <script src="./js/endpoints.js"></script>
 <script>
-$('#form_table').submit(function() {
+$('#form_table').submit(function() {        // What kind of name is form_table anyway. -md.
+  console.log($('#phone').val());
   var data = {
-  source_addr: $('#source_addr').val(),
-  dest_addr: $('#dest_addr').val(), 
+  source_addr: $('#autocomplete').val(),    // Rename these to the right things, sometime in the future. It doesn't look proper, does it. -md. 
+  dest_addr: $('#autocomplete2').val(), 
   date: $('#datepicker').val(), 
   time: $('#time_duration').val(),
   phone_number: $('#phone').val(), 
