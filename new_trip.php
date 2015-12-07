@@ -63,7 +63,7 @@ if (!isLoggedIn()) {
 	Create a new trip
 </div>
 <div id="page_content">
-	<form id="form_table" action="add_trip.php" method="POST">
+	<form id="form_table" onsubmit="return false;">
 		<input type="hidden" name="email" value="<?php echo getMailId(); ?>" />
 		<input type="hidden" name="username" value="<?php echo getName(); ?>" />
 		<table width="100%">
@@ -128,7 +128,7 @@ if (!isLoggedIn()) {
 					Contact Number:
 				</td>
 				<td width="30%">
-					<input type="text" name="phone_number" placeholder="This is optional but recommended." />
+					<input type="text" id="phone" name="phone_number" placeholder="This is optional but recommended." />
 				</td>
 			</tr>
 
@@ -137,7 +137,7 @@ if (!isLoggedIn()) {
 					Number of co-travellers:
 				</td>
 				<td width="30%">
-					<input type="text" name="co_travellers" placeholder="Including you." />
+					<input type="text" id="num_cotravel" name="co_travellers" placeholder="Including you." />
 				</td>
 			</tr>
 
@@ -146,7 +146,7 @@ if (!isLoggedIn()) {
 					Comments:
 				</td>
 				<td width="30%">
-					<input type="text" name="comments" placeholder="About quantity of luggage, etc." />
+					<input type="text" id="comments" name="comments" placeholder="About quantity of luggage, etc." />
 				</td>
 			</tr>
 
@@ -171,166 +171,34 @@ if (!isLoggedIn()) {
 </body>
 <script src="./js/jquery.js"></script>
 <script src="./js/jqueryui.js"></script>
-<script>
-var placeSearch, autocomplete;
-var componentForm = {
-  street_number: 'short_name',
-  route: 'long_name',
-  locality: 'long_name',
-  administrative_area_level_1: 'short_name',
-  country: 'long_name',
-  postal_code: 'short_name'
-};
-
-function initAutocomplete() {
-  // Create the autocomplete object, restricting the search to geographical
-  // location types.
-  autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-      {types: ['geocode']});
-
-  autocomplete2 = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
-      {types: ['geocode']});
-
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  autocomplete.addListener('place_changed', fillInAddress);
-  autocomplete2.addListener('place_changed', fillInAddress);
-
-  initMap();
-}
-
-// [START region_fillform]
-function fillInAddress() {
-  // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
-  var place2 = autocomplete2.getPlace();
-
-}
-// [END region_fillform]
-
-// [START region_geolocation]
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      var circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy
-      });
-      autocomplete.setBounds(circle.getBounds());
-    });
-  }
-}
-
-</script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUDzz-esKOYa1XHFFek8plrCKJw-OI_5I&libraries=places&callback=initAutocomplete"
         async defer></script>
+<script src="./js/new_trip.js"></script>
+<script src="./js/new_trip_maps.js"></script>
+<script src="./js/helper.js"></script>
+<script src="./js/endpoints.js"></script>
 <script>
-$(function() {
-    $( "#datepicker" ).datepicker();
-    function slideTime(event, ui){
-    var val0 = $("#slider-range").slider("values", 0),
-        val1 = $("#slider-range").slider("values", 1),
-        minutes0 = parseInt(val0 % 60, 10),
-        hours0 = parseInt(val0 / 60 % 24, 10),
-        minutes1 = parseInt(val1 % 60, 10),
-        hours1 = parseInt(val1 / 60 % 24, 10);
-    startTime = getTime(hours0, minutes0);
-    endTime = getTime(hours1, minutes1);
-    $("#time").text(startTime + ' - ' + endTime);
+$('#form_table').submit(function() {
+  var data = {
+  source_addr: $('#source_addr').val(),
+  dest_addr: $('#dest_addr').val(), 
+  date: $('#datepicker').val(), 
+  time: $('#time_duration').val(),
+  phone_number: $('#phone').val(), 
+  travellers: $('#num_cotravel').val(),
+  comments: $('#comments').val()
+  }
+  var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);
+  if (result["status"] == 0) {
+    window.location="./home.php";
+  }
+  else {
+    alert("Problem. ");
+  }
+  return false;
+});
+function submitform_addTrip() {
+  
 }
-var startTime;
-var endTime;
-  $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 1439,
-        values: [540, 1020],
-        slide: slideTime
-    });
-function slideTime(event, ui){
-    var val0 = $("#slider-range").slider("values", 0),
-        val1 = $("#slider-range").slider("values", 1),
-        minutes0 = parseInt(val0 % 60, 10),
-        hours0 = parseInt(val0 / 60 % 24, 10),
-        minutes1 = parseInt(val1 % 60, 10),
-        hours1 = parseInt(val1 / 60 % 24, 10);
-    startTime = getTime(hours0, minutes0);
-    endTime = getTime(hours1, minutes1);
-    $("#time").text(startTime + ' - ' + endTime);
-    $('#time_duration').val(startTime + ' - ' + endTime);
-}
-function getTime(hours, minutes) {
-    var time = null;
-    minutes = minutes + "";
-    if (hours < 12) {
-        time = "AM";
-    }
-    else {
-        time = "PM";
-    }
-    if (hours == 0) {
-        hours = 12;
-    }
-    if (hours > 12) {
-        hours = hours - 12;
-    }
-    if (minutes.length == 1) {
-        minutes = "0" + minutes;
-    }
-    return hours + ":" + minutes + " " + time;
-}
-slideTime();
-  });
-</script>
-<script>
-var typingTimer;                //timer identifier
-var doneTypingInterval = 5000;  //time in ms, 5 second for example
-//on keyup, start the countdown
-
-
-function initMap() {
-
-  var directionsDisplay = new google.maps.DirectionsRenderer;
-  var directionsService = new google.maps.DirectionsService;
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
-    center: {lat: 17.4456, lng: 78.3497}
-  });
-  // google.maps.event.trigger(map, 'resize')
-  directionsDisplay.setMap(map);
-  // directionsDisplay.setPanel(document.getElementById('right-panel'));
-
-  var onChangeHandler = function() {
-    calculateAndDisplayRoute(directionsService, directionsDisplay);
-  };
-	// document.getElementById('autocomplete2').addEventListener('change', function() { console.log('hi'); });
-  // document.getElementById('start').addEventListener('onFocus', onChangeHandler);
-  document.getElementById('autocomplete2').addEventListener('change', onChangeHandler);
-}
-
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-  var start = document.getElementById('autocomplete').value;
-  var end = document.getElementById('autocomplete2').value;
-  directionsService.route({
-    origin: start,
-    destination: end,
-    travelMode: google.maps.TravelMode.DRIVING
-  }, function(response, status) {
-    if (status === google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
-    } else {
-      console.log('Directions request failed due to ' + status);
-    }
-  });
-}
-
 </script>
 </html>
