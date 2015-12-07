@@ -42,7 +42,7 @@ $source_addr = $_POST["source_addr"];
 $dest_addr = $_POST["dest_addr"];
 $date = $_POST["date"];
 $time = $_POST["time"];
-$phone = $_POST["phone"];
+$phone = $_POST["phone_number"];
 $travellers = $_POST["travellers"];
 $comment = $_POST["comment"];
 
