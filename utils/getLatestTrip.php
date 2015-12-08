@@ -3,7 +3,7 @@ session_start();
 require_once("ldap.php");
 require_once("userhelper.php");
 
-function getTrip($tripId) { 
+function getLatestTrip() { 
     if(!isLoggedIn()) {
         $response = array(
             "status" => 1,
@@ -13,7 +13,7 @@ function getTrip($tripId) {
     }
 
     include "config.php";
-    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE uid=" . $tripId;
+    $query = "SELECT * FROM " . $db_mysql_table_name . " ORDER BY -id LIMIT 1 WHERE uid=" . getUid();
 
 	$success = mysqli_query($link, $query);
 	if($success) {
@@ -34,6 +34,5 @@ function getTrip($tripId) {
     }
 }
 
-$tripId = $_POST["trip_id"]
-getTrip($tripId);
+getLatestTrip();
 ?>

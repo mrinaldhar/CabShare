@@ -23,19 +23,54 @@ response: {
 	}
 }
 
-3. /getTrip
-request: {}
-response: {
-	status: 0, 
-	data: {
-		tripId: 01, 
-		... (All details about !!latest!! trip of currently logged in user)
-	}
-}
-response: {
+3. Trip
+    1) /getTrip
+    request: {
+        trip_id: 13
+    }
+    response: {
+	    status: 0, 
+	    trip: { // No idea why this was called data -_-
+		    tripId: 01, 
+		    ... (All details about !!latest!! trip of currently logged in user)
+	    }
+    }
+    response: {
         status: 1,
-            error: "Unable to run select in DB" | "Invalid session"
-}
+        error: "Unable to run select in DB" | "Invalid session"
+    }
+
+    2) /getLatestTrip
+    request: {}
+    response: {
+        status:0,
+        trip: {
+            tripId: 01,
+            ... (All details about !!latest!! trip of currently logged in user)
+        }
+    }   
+    response: {
+        status: 1,
+        error: "Unable to run select in DB" | "Invalid session"
+    }
+
+    3) /getAllTrips
+    request: {}
+    response: {
+        status:0,
+        trips: {
+            [
+                { trip 1 },
+                { trip 2 },
+                ...
+            ]
+        }
+    }   
+    response: {
+        status: 1,
+        error: "Unable to run select in DB" | "Invalid session"
+    }
+
 
 4. /matchTrip
 request: {}
