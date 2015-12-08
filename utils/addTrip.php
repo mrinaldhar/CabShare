@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("ldap.php");
 require_once("userhelper.php");
 
@@ -7,7 +7,7 @@ function addTripToDb($source, $destination, $date, $time, $phone, $travellers, $
     
     if(!isLoggedIn()) {
         $response = array(
-            "status" => "1",
+            "status" => 1,
             "error" => "Invalid session" );
         echo json_encode($response);
         return;
@@ -25,14 +25,14 @@ function addTripToDb($source, $destination, $date, $time, $phone, $travellers, $
                 "tripId" => $tripId );
 
 			$response = array(
-						"status" => "0",
+						"status" => 0,
 						"data" => $data );
 
             echo json_encode($response);
     }
     else {
         $response = array(
-            "status" => "1",
+            "status" => 1,
             "error" => "Unable to insert into DB" );
         echo json_encode($response);
     }
@@ -43,7 +43,7 @@ $source_addr = $_POST["source_addr"];
 $dest_addr = $_POST["dest_addr"];
 $date = $_POST["date"];
 $time = $_POST["time"];
-$phone = $_POST["phone"];
+$phone = $_POST["phone_number"];
 $travellers = $_POST["travellers"];
 $comment = $_POST["comment"];
 

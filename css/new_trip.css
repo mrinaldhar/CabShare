@@ -1,0 +1,32 @@
+#form_table {
+	margin-top: 20px;
+	width: 100%;
+	max-width: 100%;
+}
+#form_table tr td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#form_table {
+	width: 100%;
+	padding-bottom: 100px;
+}
+#time {
+	display: block;
+	margin-top: 10px;
+}
+#page_content {
+	text-align: center;
+}
+
+#map {
+	height: 400px;
+	display: block;
+      }
+#right-panel {
+	display: block;
+}
+.ui-slider-handle, .ui-state-default, .ui-corner-all{
+	z-index: 1;
+	outline-width: 0px;
+}

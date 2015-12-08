@@ -134,9 +134,8 @@ input {
 	/*padding: 10px;*/
 	padding-top: 7px;
 	padding-bottom: 7px;
-	box-shadow: 0 0 1px #0091EA;
 	padding-left: 10px;
-	/*border: 2px solid #0091EA;*/
+	border: 1px solid #bcbcbc;
 	/*border-radius: 1px;*/
 	font-family: myriadpro;
 	outline-width: 0px;
