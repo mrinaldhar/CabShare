@@ -18,6 +18,7 @@ if (!isLoggedIn()) {
 <?php require_once('header.php'); ?>
 
 <div class="container">
+<div id="map"></div>
 <div id="page_title">
 	Your current trip status
 </div>
@@ -31,4 +32,6 @@ if (!isLoggedIn()) {
 </body>
 <script src="./js/jquery.js"></script>
 <script src="./js/jqueryui.js"></script>
+<script src="./js/helper.js"></script>
+<script src="./js/endpoints.js"></script>
 </html>

@@ -147,6 +147,7 @@ $('#form_table').submit(function() {        // What kind of name is form_table a
   comments: $('#comments').val()
   }
   var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);
+  console.log(result);
   if (result["status"] == 0) {
     window.location="./home.php";
   }
