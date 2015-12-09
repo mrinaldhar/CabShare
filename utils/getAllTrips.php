@@ -3,7 +3,7 @@ session_start();
 require_once("ldap.php");
 require_once("userhelper.php");
 
-function getLatestTrip() { 
+function getAllTrips() { 
     if(!isLoggedIn()) {
         $response = array(
             "status" => 1,
@@ -13,18 +13,18 @@ function getLatestTrip() {
     }
 
     include "config.php";
-    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE userid='".getUid()."' ORDER BY -id LIMIT 1 ";
+    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE userid='" . getUid() . "'";
 
 	$success = mysqli_query($link, $query);
 	if($success) {
-            if (mysqli_num_rows($success) == 1) {
-                $row = mysqli_fetch_assoc($success);
-                $response = array(
-                    "status" => 0,
-                    "data" => $row
-                );
-            }
-            echo json_encode($response);
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($success))
+            $rows[] = $row;
+        $response = array(
+            "status" => 0,
+            "data" => $rows
+        );
+        echo json_encode($response);
     }
     else {
         $response = array(
@@ -34,5 +34,5 @@ function getLatestTrip() {
     }
 }
 
-getLatestTrip();
+getAllTrips();
 ?>

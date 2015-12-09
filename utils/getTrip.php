@@ -13,7 +13,7 @@ function getTrip($tripId) {
     }
 
     include "config.php";
-    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE uid=" . $tripId;
+    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE id='" . $tripId . "'";
 
 	$success = mysqli_query($link, $query);
 	if($success) {
@@ -21,7 +21,7 @@ function getTrip($tripId) {
                 $row = mysqli_fetch_assoc($success);
                 $response = array(
                     "status" => 0,
-                    "trip" => $row
+                    "data" => $row
                 );
             }
             echo json_encode($response);
