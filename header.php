@@ -6,7 +6,7 @@
 			<tr>
 				<td width="30%">
 					<a href="./new_trip.php"><button class="btn anim">+ New trip</button></a>
-					<a href="./new_trip.php"><button class="btn anim">Current trip</button></a>
+					<a href="./home.php"><button class="btn anim">Current trip</button></a>
 					<button class="btn anim">All other poolers</button>
 				</td>
 				<td width="40%">

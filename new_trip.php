@@ -144,7 +144,7 @@ $('#form_table').submit(function() {        // What kind of name is form_table a
   time: $('#time_duration').val(),
   phone_number: $('#phone').val(), 
   travellers: $('#num_cotravel').val(),
-  comments: $('#comments').val()
+  comment: $('#comments').val()
   }
   var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);
   console.log(result);
