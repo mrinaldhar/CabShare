@@ -15,7 +15,7 @@ function addTripToDb($source, $destination, $date, $time, $phone, $travellers, $
 
     include "config.php";
 
-    $query = "INSERT INTO " . $db_mysql_table_name . " (userid, source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $travellers . "')";
+    $query = "INSERT INTO new_cab_share (userid, source_addr, dest_addr, date, time, phone, travellers, comment) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $time . "', '" . $phone . "', '" . $travellers . "', '" . $comment . "')";
 
 	$success = mysqli_query($link, $query);
 	if($success) {
@@ -49,7 +49,15 @@ $comment = $_POST["comment"];
 
 // Testing trip addition.
 // addTripToDb("test", "test", "test", "test", "test", "test", "test", "test");
+if ($source_addr!='' && $dest_addr!='' && $date!='' && $time!='' && $travellers!='') {
+    addTripToDb($source_addr, $dest_addr, $date, $time, $phone, $travellers, $comment);
 
-addTripToDb($source_addr, $dest_addr, $date, $time, $phone, $travellers, $comment);
+}
+else {
+    $response = array(
+            "status" => 1,
+            "error" => "Cannot be empty." );
+        echo json_encode($response);
+}
 
 ?>
