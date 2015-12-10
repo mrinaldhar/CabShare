@@ -13,7 +13,7 @@ function getLatestTrip() {
     }
 
     include "config.php";
-    $query = "SELECT * FROM " . $db_mysql_table_name . " ORDER BY -id LIMIT 1 WHERE uid=" . getUid();
+    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE userid='".getUid()."' ORDER BY -id LIMIT 1 ";
 
 	$success = mysqli_query($link, $query);
 	if($success) {
@@ -21,7 +21,7 @@ function getLatestTrip() {
                 $row = mysqli_fetch_assoc($success);
                 $response = array(
                     "status" => 0,
-                    "trip" => $row
+                    "data" => $row
                 );
             }
             echo json_encode($response);
