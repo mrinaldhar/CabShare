@@ -6,15 +6,16 @@ function isAdmin() {
     return in_array(getUid(), $admin);
 }
 function getUid() {
-		return $_SESSION['ldapstuff'][0]['uid'][0];
+    // Let's take uid to be email for our portal.
+	return $_SESSION['ldapstuff'][0]['mail'][0];
 }
 function getMailId() {
-		return $_SESSION['ldapstuff'][0]['mail'][0];
+	return $_SESSION['ldapstuff'][0]['mail'][0];
 }
 function getName() {
-		return $_SESSION['ldapstuff'][0]['givenname'][0];
+	return $_SESSION['ldapstuff'][0]['givenname'][0];
 }
 function isLoggedIn() {
-		return isset($_SESSION['ldapstuff']);
+	return isset($_SESSION['ldapstuff']);
 }
 ?>

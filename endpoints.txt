@@ -30,7 +30,7 @@ response: {
     }
     response: {
 	    status: 0, 
-	    trip: { // No idea why this was called data -_-
+	    data: { // No idea why this was called data -_-
 		    tripId: 01, 
 		    ... (All details about !!latest!! trip of currently logged in user)
 	    }
@@ -44,7 +44,7 @@ response: {
     request: {}
     response: {
         status:0,
-        trip: {
+        data: {
             tripId: 01,
             ... (All details about !!latest!! trip of currently logged in user)
         }
@@ -58,7 +58,7 @@ response: {
     request: {}
     response: {
         status:0,
-        trips: {
+        data: {
             [
                 { trip 1 },
                 { trip 2 },
@@ -73,7 +73,9 @@ response: {
 
 
 4. /matchTrip
-request: {}
+request: {
+    tripId: 13
+}
 response: {
 	status: 0, 
 	data: {
@@ -83,6 +85,10 @@ response: {
 			{ trip 3 }
 		]
 	}
+}
+response: { 
+    status: 1,
+    error: "Unable to run select in DB" | "Invalid session"
 }
 
 5. /addTrip
