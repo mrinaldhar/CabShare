@@ -83,7 +83,7 @@ response: {
 			{ trip 1 }, 
 			{ trip 2 }, 			// These trips must be in same format as /getTrip's response["data"]
 			{ trip 3 }
-		]
+		] // This array can be of len 0 as well.
 	}
 }
 response: { 
@@ -96,7 +96,8 @@ request: {
 	source_addr: "String",
 	dest_addr: "String", 
 	date: "String", 
-	time: "String - String"
+    start_time: "String"
+    end_time: "String"
 	phone_number: "" or "String", 
 	travellers: "String",
 	comments: "String"
