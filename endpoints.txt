@@ -37,7 +37,7 @@ response: {
     }
     response: {
         status: 1,
-        error: "Unable to run select in DB" | "Invalid session"
+        error: "Unable to run select in DB" | "Duplicate id in DB" | "Invalid session"
     }
 
     2) /getLatestTrip
@@ -88,7 +88,7 @@ response: {
 }
 response: { 
     status: 1,
-    error: "Unable to run select in DB" | "Invalid session"
+    error: "Unable to run query in DB" | "Duplicate id in DB" | "Invalid session"
 }
 
 5. /addTrip

@@ -32,6 +32,7 @@ CREATE TABLE `new_cab_share` (
   `travellers` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `comment` varchar(50) NOT NULL,
+  `state` int(6) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
