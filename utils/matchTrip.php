@@ -57,7 +57,7 @@ function matchTrip($tripId) {
     $query = "SELECT * FROM " . $db_mysql_table_name . 
         " WHERE state=0" .
         " AND userid!='" . getUid() . "'" .
-        " AND date=" . getTripDate($matchTrip); // Ensures rides are on the same day.
+        " AND date='" . getTripDate($matchTrip) . "'"; // Ensures rides are on the same day.
 
 	$success = mysqli_query($link, $query);
 	if($success) {
@@ -78,10 +78,5 @@ function matchTrip($tripId) {
             "error" => "Unable to run query in DB" );
         echo json_encode($response);
     }
-
-
 }
-
-$tripId = intval($_GET["tripID"]);
-matchTrip($tripId);
 ?>

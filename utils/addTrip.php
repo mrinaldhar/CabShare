@@ -2,6 +2,7 @@
 session_start();
 require_once("ldap.php");
 require_once("userhelper.php");
+require_once("matchTrip.php");
 
 function addTripToDb($source, $destination, $date, $start_time, $end_time, $phone, $travellers, $comment) {
     
@@ -27,7 +28,7 @@ function addTripToDb($source, $destination, $date, $start_time, $end_time, $phon
 			$response = array(
 						"status" => 0,
 						"data" => $data );
-
+            matchTrip($tripId);
             echo json_encode($response);
     }
     else {
