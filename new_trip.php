@@ -70,7 +70,9 @@ if (!isLoggedIn()) {
 				<td width="30%">
 					<div id="slider-range"></div>
 					<span id="time"></span>
-					<input type="hidden" id="time_duration" name="time_duration" />
+					<input type="hidden" id="start_time" name="start_time" />
+					<input type="hidden" id="end_time" name="end_time" />
+
 				</td>
 			</tr>
 
@@ -141,11 +143,13 @@ $('#form_table').submit(function() {        // What kind of name is form_table a
   source_addr: $('#autocomplete').val(),    // Rename these to the right things, sometime in the future. It doesn't look proper, does it. -md. 
   dest_addr: $('#autocomplete2').val(), 
   date: $('#datepicker').val(), 
-  time: $('#time_duration').val(),
+  start_time: $('#start_time').val(),
+  end_time: $('#end_time').val(),
   phone_number: $('#phone').val(), 
   travellers: $('#num_cotravel').val(),
   comment: $('#comments').val()
   }
+  console.log(data);
   var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);
   console.log(result);
   if (result["status"] == 0) {
