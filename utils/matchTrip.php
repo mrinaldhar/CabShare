@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting();
 require_once("ldap.php");
 require_once("userhelper.php");
 require_once("triphelper.php");
@@ -81,6 +82,6 @@ function matchTrip($tripId) {
 
 }
 
-$tripId = $_POST["trip_id"];
+$tripId = intval($_GET["tripID"]);
 matchTrip($tripId);
 ?>
