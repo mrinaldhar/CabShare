@@ -30,7 +30,30 @@ function slideTime(event, ui){
     startTime = getTime(hours0, minutes0);
     endTime = getTime(hours1, minutes1);
     $("#time").text(startTime + ' - ' + endTime);
-    $('#time_duration').val(startTime + ' - ' + endTime);
+    startTime24H = "";
+    endTime24H = "";
+    if (hours0<10) {
+        startTime24H = "0";
+    }
+    if (hours1<10) {
+        endTime24H = "0";
+    }
+    startTime24H = startTime24H + hours0;
+    endTime24H = endTime24H + hours1;
+
+    if (minutes0<10) {
+        startTime24H = startTime24H + "0";
+    }
+    if (minutes1<10) {
+        endTime24H = endTime24H + "0";
+    }
+
+    startTime24H = startTime24H + minutes0;
+    endTime24H = endTime24H + minutes1;
+
+    $('#start_time').val(startTime24H);
+    $('#end_time').val(endTime24H);
+    console.log(startTime24H + " - " + endTime24H);
 }
 function getTime(hours, minutes) {
     var time = null;

@@ -102,7 +102,34 @@ if (!isLoggedIn()) {
 #container {
 	padding-bottom: 50px;
 }
+#matched_results {
+	list-style-type: none;
+	padding: 0px;
+}
+#matched_results li {
+	display: block;
+	margin-bottom: 20px;
+	padding: 10px;
+	color: rgba(0,0,0,0.5);
+}
+#matched_results li span {
+	display: block;
+	width: 100%;
+}
+.matched_route {
 
+	color: rgba(0,0,0,0.5);
+}
+.matched_name {
+	color: rgba(0,0,0,1);
+	font-size: 1.7em;
+
+}
+.matched_contact {
+	color: rgba(0,0,0,1);
+	margin-bottom: 5px;
+	font-size: 0.9em;
+}
 </style>
 </head>
 <body>
@@ -128,7 +155,10 @@ if (!isLoggedIn()) {
 </table>
 <div id="tab_1_data" class="tab selected_data anim">
 <!-- Fill in data from match trip results -->
-hi1
+<ul id="matched_results">
+
+	
+</ul>
 </div>
 <div id="tab_2_data" class="tab anim">
 <br />
@@ -199,7 +229,7 @@ function getLatestTrip() {
 	TRIP_LOADED = 1;
 	matchTrip(result["id"]);
 	$('#page_title').html("Trip from <span class='loc'>"+ getShortAddr(result["source_addr"]) + "</span> to <span class='loc'>" + getShortAddr(result["dest_addr"]) + "</span>");
-	$('#page_title').append("<span id='subtitle'>"+result["travellers"]+" people travelling on "+result["date"]+" during "+result["time"]+"<br />\
+	$('#page_title').append("<span id='subtitle'>"+result["travellers"]+" people travelling on "+result["date"]+" during "+result["start_time"]+" - " + result["end_time"] + "<br />\
 		</span>");
 }
 
@@ -207,21 +237,44 @@ function getAllTrips() {
 	var results = ajaxCall(API_dir+API_getAllTrips, {}, "GET", false);
 	if (results["status"] == 0) {
 		results = results["data"];
+		for (var x=0; x<results.length; x++) {
+		var current = results[x];
+		$('#sidebar ul').append("<li class='anim'>"+getShortAddr(current["source_addr"])+" to "+getShortAddr(current["dest_addr"]) +"\
+			<span id='subtitle'>"+current["travellers"]+" people travelling on "+current["date"]+" during "+current["start_time"]+" - " + current["end_time"] + "</li>");
+
+		}
 	}
 	else {
 		alert("Some error happened. "); // Add this to notifications bar.
 	}
-	for (var x=0; x<results.length; x++) {
-		var current = results[x];
-		$('#sidebar ul').append("<li class='anim'>"+getShortAddr(current["source_addr"])+" to "+getShortAddr(current["dest_addr"]) +"\
-			<span id='subtitle'>"+current["travellers"]+" people travelling on "+current["date"]+" during "+current["time"]+"</li>");
-
-	}
+	
 
 }
 
-function matchTrip(tripId) {
-		// Call the trip matching code here. 
+function matchTrip(trip_id) {
+	var data = {
+		tripId: trip_id
+	}
+	console.log(data);
+	var results = ajaxCall(API_dir+API_matchTrip, data, "GET", false);
+	console.log(results);
+	if (results["status"] == 0) {
+		results = results["data"];
+		for (var x=0; x<results.length; x++) {
+		var current = results[x];
+		$('#matched_results').append('<li>\
+		<span class="matched_name">'+current["userid"]+'</span>\
+		<span class="matched_contact">'+current["userid"]+' &bull; '+current["phone"]+'</span>\
+		<span class="matched_route">'+getShortAddr(current["source_addr"])+' to '+getShortAddr(current["dest_addr"])+' &bull; '+current["start_time"]+' - '+current["end_time"]+'</span>\
+		<span class="matched_details">'+current["travellers"]+' travellers &bull; '+current["comment"] +'</span></li>');
+		
+		}
+	}
+	else {
+		alert("Some error happened. "); // Add this to notifications bar.
+	}
+
+	
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUDzz-esKOYa1XHFFek8plrCKJw-OI_5I&libraries=places&callback=initMap"
