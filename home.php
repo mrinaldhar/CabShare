@@ -4,7 +4,7 @@ require_once('./utils/ldap.php');
 require_once('./utils/userhelper.php');
 if (!isLoggedIn()) {
 	$home_url = 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/index.php';                                 // the user is redirected to the home page if logged in
-	// header('Location: ' . $home_url); 
+	header('Location: ' . $home_url); 
 }
 ?>
 <!doctype html>
@@ -24,8 +24,8 @@ if (!isLoggedIn()) {
 	/*border: 1px dashed rgba(0,0,0,0.5);*/
 }
 .tab_select:hover {
-	background-color: rgba(0,0,0,0.8);
-	color: white;
+	/*background-color: rgba(0,0,0,0.8);*/
+	/*color: white;*/
 }
 .selected {
 	background-color: rgba(0,0,0,0.65);
@@ -145,21 +145,11 @@ if (!isLoggedIn()) {
 <div id="page_content">
 <table width="100%">
 <tr>
-	<td width="50%" id="tab_1" class="tab_select anim selected">
-		Smart CabShare matches
-	</td>
 	<td width="50%" id="tab_2" class="tab_select anim">
-		Route this trip
+		<big>Route for this trip</big>
 	</td>
 </tr>
 </table>
-<div id="tab_1_data" class="tab selected_data anim">
-<!-- Fill in data from match trip results -->
-<ul id="matched_results">
-
-	
-</ul>
-</div>
 <div id="tab_2_data" class="tab anim">
 <br />
 <button class="btn anim">Download as PDF</button>		<!-- Use jsPDF to implement this. Should be simple. -md -->
@@ -193,7 +183,7 @@ $(document).ready(function() {
 	$('.tab_select').click(function() {
 		var tab_id = this.id.split('_')[1];
 		$('.tab_select').removeClass('selected');
-		$(this).addClass('selected');
+		// $(this).addClass('selected');
 		$('.tab').removeClass('selected_data');
 		$('#tab_'+tab_id+"_data").addClass('selected_data');
 		if (tab_id == "2") {
@@ -203,6 +193,7 @@ $(document).ready(function() {
 		// 	alert('hi');
 		// });
 	});
+	$('#tab_2').click();
 });
 
 function getShortAddr(longAddr) {
@@ -227,7 +218,7 @@ function getLatestTrip() {
 	SOURCE_ADDR = result["source_addr"];
 	DEST_ADDR = result["dest_addr"];
 	TRIP_LOADED = 1;
-	matchTrip(result["id"]);
+	// matchTrip(result["id"]);
 	$('#page_title').html("Trip from <span class='loc'>"+ getShortAddr(result["source_addr"]) + "</span> to <span class='loc'>" + getShortAddr(result["dest_addr"]) + "</span>");
 	$('#page_title').append("<span id='subtitle'>"+result["travellers"]+" people travelling on "+result["date"]+" during "+result["start_time"]+" - " + result["end_time"] + "<br />\
 		</span>");
@@ -251,31 +242,31 @@ function getAllTrips() {
 
 }
 
-function matchTrip(trip_id) {
-	var data = {
-		tripId: trip_id
-	}
-	console.log(data);
-	var results = ajaxCall(API_dir+API_matchTrip, data, "GET", false);
-	console.log(results);
-	if (results["status"] == 0) {
-		results = results["data"];
-		for (var x=0; x<results.length; x++) {
-		var current = results[x];
-		$('#matched_results').append('<li>\
-		<span class="matched_name">'+current["userid"]+'</span>\
-		<span class="matched_contact">'+current["userid"]+' &bull; '+current["phone"]+'</span>\
-		<span class="matched_route">'+getShortAddr(current["source_addr"])+' to '+getShortAddr(current["dest_addr"])+' &bull; '+current["start_time"]+' - '+current["end_time"]+'</span>\
-		<span class="matched_details">'+current["travellers"]+' travellers &bull; '+current["comment"] +'</span></li>');
+// function matchTrip(trip_id) {
+// 	var data = {
+// 		tripId: trip_id
+// 	}
+// 	console.log(data);
+// 	var results = ajaxCall(API_dir+API_matchTrip, data, "GET", false);
+// 	console.log(results);
+// 	if (results["status"] == 0) {
+// 		results = results["data"];
+// 		for (var x=0; x<results.length; x++) {
+// 		var current = results[x];
+// 		$('#matched_results').append('<li>\
+// 		<span class="matched_name">'+current["userid"]+'</span>\
+// 		<span class="matched_contact">'+current["userid"]+' &bull; '+current["phone"]+'</span>\
+// 		<span class="matched_route">'+getShortAddr(current["source_addr"])+' to '+getShortAddr(current["dest_addr"])+' &bull; '+current["start_time"]+' - '+current["end_time"]+'</span>\
+// 		<span class="matched_details">'+current["travellers"]+' travellers &bull; '+current["comment"] +'</span></li>');
 		
-		}
-	}
-	else {
-		alert("Some error happened. "); // Add this to notifications bar.
-	}
+// 		}
+// 	}
+// 	else {
+// 		alert("Some error happened. "); // Add this to notifications bar.
+// 	}
 
 	
-}
+// }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUDzz-esKOYa1XHFFek8plrCKJw-OI_5I&libraries=places&callback=initMap"
         async defer></script>
