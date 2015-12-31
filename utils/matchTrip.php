@@ -5,6 +5,7 @@ require_once("ldap.php");
 require_once("userhelper.php");
 require_once("triphelper.php");
 require_once("keys.php");
+require_once("email.php");
 
 function getDistance($address1, $address2) {
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $address1 . "&destinations=" . $address2 ."&mode=driving&key=" . $mapsAPIKey;
@@ -66,11 +67,13 @@ function matchTrip($tripId) {
             if(timeCoincides($row, $matchTrip)) { // Ensures that they start at around the same time.
                 if(getDistance(getDestAddr($row), getDestAddr($matchTrip)) <= 3000) {
                     if(getDistance(getSourceAddr($row), getSourceAddr($matchTrip)) <= 3000) {
-                        $rows[] = $row;
+                       $rows[] = $row;
                     }
                 }
             }
         }
+        $rows = json_encode($rows);
+        send_email(getMailId(), $rows);
     }
     else {
         $response = array(
