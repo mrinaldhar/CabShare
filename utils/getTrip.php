@@ -34,6 +34,6 @@ function getTrip($tripId) {
     }
 }
 
-$tripId = $_POST["trip_id"];
+$tripId = $_GET["trip_id"];
 getTrip($tripId);
 ?>

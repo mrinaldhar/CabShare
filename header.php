@@ -9,7 +9,7 @@
 					<a href="./home.php"><button class="btn anim">Current trip</button></a>
 				</td>
 				<td width="40%">
-					<span id="logo_top">Cab Share<span id="iiith">@IIIT-H</span></span>
+					<span id="logo_top">Cab Share<span id="iiith"> &bull; IIIT-H</span></span>
 				</td>
 				<td width="30%">
 					<a href="./logout.php"><button class="btn anim">Logout: <?php echo getName(); ?></button></a>
@@ -24,11 +24,10 @@
 		<table class="header">
 			<tr>
 				<td width="30%">
-					<button class="btn anim">About</button>
 
 				</td>
 				<td width="40%">
-					<span id="logo_top">Cab Share<span id="iiith">@IIIT-H</span></span>
+					<span id="logo_top">Cab Share<span id="iiith">&bull; IIIT-H</span></span>
 				</td>
 				<td width="30%">
 					<small>Helped <span id="completed_people" class="blue1">0 people</span> complete <span id="completed_trips" class="blue1">0 trips</span> so far...</small>

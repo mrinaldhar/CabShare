@@ -47,6 +47,7 @@ if (!isLoggedIn()) {
 	margin-top: 10px;
 	font-size: 0.8em;
 	display: none;
+	text-align: center;
 }
 .selected_data {
 	display: block;
@@ -130,12 +131,16 @@ if (!isLoggedIn()) {
 	margin-bottom: 5px;
 	font-size: 0.9em;
 }
+.adp-directions {
+	width: 100%;
+	max-width: 100%;
+}
 </style>
 </head>
 <body>
 <?php require_once('header.php'); ?>
 
-<div class="container">
+<div class="container" id="toPrint">
 <div id="page_title">
 
 </div>
@@ -143,16 +148,8 @@ if (!isLoggedIn()) {
 
 </div>
 <div id="page_content">
-<table width="100%">
-<tr>
-	<td width="50%" id="tab_2" class="tab_select anim">
-		<big>Route for this trip</big>
-	</td>
-</tr>
-</table>
-<div id="tab_2_data" class="tab anim">
-<br />
-<button class="btn anim">Download as PDF</button>		<!-- Use jsPDF to implement this. Should be simple. -md -->
+<div id="tab_2_data" class="tab anim selected_data">
+<button class="btn anim" id="savepdfbtn">Download as PDF</button>		<!-- Use jsPDF to implement this. Should be simple. -md -->
 <br /><br />
 		<div id="map"></div>			
 		<div id="right-panel"></div>
@@ -173,27 +170,18 @@ if (!isLoggedIn()) {
 <script src="./js/jqueryui.js"></script>
 <script src="./js/helper.js"></script>
 <script src="./js/endpoints.js"></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUDzz-esKOYa1XHFFek8plrCKJw-OI_5I&libraries=places&callback=initMap"
+        async defer></script>
 <script>
 var SOURCE_ADDR, DEST_ADDR;
 
 $(document).ready(function() {
-	getLatestTrip();
+	getTrip(-1);
 	getAllTrips();
-	$('.tab_select').click(function() {
-		var tab_id = this.id.split('_')[1];
-		$('.tab_select').removeClass('selected');
-		// $(this).addClass('selected');
-		$('.tab').removeClass('selected_data');
-		$('#tab_'+tab_id+"_data").addClass('selected_data');
-		if (tab_id == "2") {
-			google.maps.event.trigger(map, 'resize');
-		}
-		// $('.tab').fadeOut(1000, function() {
-		// 	alert('hi');
-		// });
+	google.maps.event.trigger(map, 'resize');
+	$('#savepdfbtn').click(function() {
+		savePDF();
 	});
-	$('#tab_2').click();
 });
 
 function getShortAddr(longAddr) {
@@ -205,8 +193,21 @@ function getShortAddr(longAddr) {
 		return longAddr.split(',')[0];
 	}
 }
-function getLatestTrip() {
-	var result = ajaxCall(API_dir+API_getLatestTrip, {}, "GET", false);
+function getTrip(tripID) {
+	if (tripID != -1) {
+		var data = {
+			trip_id: tripID
+		}
+		var result = ajaxCall(API_dir+API_getTrip, data, "GET", false);
+		SOURCE_ADDR = result["source_addr"];
+		DEST_ADDR = result["dest_addr"];
+		TRIP_LOADED = 1;
+		initMap();
+	}
+	else {
+		var data = {};
+		var result = ajaxCall(API_dir+API_getLatestTrip, data, "GET", false);
+	}
 	console.log(result);
 	
 	if (result["status"] == 0) {
@@ -230,7 +231,7 @@ function getAllTrips() {
 		results = results["data"];
 		for (var x=0; x<results.length; x++) {
 		var current = results[x];
-		$('#sidebar ul').append("<li class='anim'>"+getShortAddr(current["source_addr"])+" to "+getShortAddr(current["dest_addr"]) +"\
+		$('#sidebar ul').append("<li onclick='getTrip("+current["id"]+")' class='anim'>"+getShortAddr(current["source_addr"])+" to "+getShortAddr(current["dest_addr"]) +"\
 			<span id='subtitle'>"+current["travellers"]+" people travelling on "+current["date"]+" during "+current["start_time"]+" - " + current["end_time"] + "</li>");
 
 		}
@@ -268,8 +269,7 @@ function getAllTrips() {
 	
 // }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUDzz-esKOYa1XHFFek8plrCKJw-OI_5I&libraries=places&callback=initMap"
-        async defer></script>
+
 <script>
 
 function initMap() {
@@ -279,7 +279,7 @@ function initMap() {
     zoom: 14,
     center: {lat: 17.4456, lng: 78.3497}
   });
-  // google.maps.event.trigger(map, 'resize')
+  google.maps.event.trigger(map, 'resize')
   directionsDisplay.setMap(map);
   directionsDisplay.setPanel(document.getElementById('right-panel'));
 
@@ -306,5 +306,26 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 }
 
 
+</script>
+<script src="./js/jspdf.min.js"></script>
+<script src="./js/jspdf.plugin.from_html.js"></script>
+<script src="./js/jspdf.plugin.split_text_to_size.js"></script>
+<script src="./js/jspdf.plugin.standard_fonts_metrics.js"></script>
+<script>
+function savePDF() {
+var doc = new jsPDF();          
+var elementHandler = {
+};
+var source = window.document.getElementById("toPrint");
+doc.fromHTML(
+    source,
+    15,
+    15,
+    {
+      'width': 180,'elementHandlers': elementHandler
+    });
+
+doc.output("dataurlnewwindow");
+}
 </script>
 </html>
