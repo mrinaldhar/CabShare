@@ -4,7 +4,7 @@ require_once("ldap.php");
 require_once("userhelper.php");
 require_once("matchTrip.php");
 
-function addTripToDb($source, $destination, $date, $start_time, $end_time, $phone, $travellers, $comment) {
+function addTripToDb($source, $destination, $date, $start_time, $end_time, $phone, $travellers, $comment, $private) {
     
     if(!isLoggedIn()) {
         $response = array(
@@ -16,7 +16,7 @@ function addTripToDb($source, $destination, $date, $start_time, $end_time, $phon
 
     include "config.php";
 
-    $query = "INSERT INTO new_cab_share (userid, source_addr, dest_addr, date, start_time, end_time, phone, travellers, comment, state) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $start_time . "', '" . $end_time ."', '" . $phone . "', '" . $travellers . "', '" . $comment . "', 0)";
+    $query = "INSERT INTO new_cab_share (userid, source_addr, dest_addr, date, start_time, end_time, phone, travellers, comment, private, state) VALUES ('". getUid() . "', '" . $source . "', '" . $destination . "', '" . $date . "', '" . $start_time . "', '" . $end_time ."', '" . $phone . "', '" . $travellers . "', '" . $comment . "', $private, 0)";
 
 	$success = mysqli_query($link, $query);
 	if($success) {
@@ -48,11 +48,12 @@ $end_time = $_POST["end_time"];
 $phone = $_POST["phone_number"];
 $travellers = $_POST["travellers"];
 $comment = $_POST["comment"];
+$private = $_POST["private"];
 
 // Testing trip addition.
 // addTripToDb("test", "test", "test", "test", "test", "test", "test", "test");
 if ($source_addr!='' && $dest_addr!='' && $date!='' && $start_time!='' && $end_time!='' && $travellers!='') {
-    addTripToDb($source_addr, $dest_addr, $date, $start_time, $end_time, $phone, $travellers, $comment);
+    addTripToDb($source_addr, $dest_addr, $date, $start_time, $end_time, $phone, $travellers, $comment, $private);
 
 }
 else {

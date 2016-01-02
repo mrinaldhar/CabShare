@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS `new_cab_share` (
   `travellers` varchar(50) NOT NULL,
   `phone` varchar(50) NOT NULL,
   `comment` varchar(50) NOT NULL,
-  `state` int(6) unsigned NOT NULL
+  `state` int(6) unsigned NOT NULL,
+  `private` varchar(50) NOT NULL
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --

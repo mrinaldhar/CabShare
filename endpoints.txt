@@ -9,6 +9,10 @@ response: {
 			trips: 44
 	}
 }
+response: {
+    status: 1,
+    error: "Unable to run select in DB"
+    }
 
 2. /email 
 request: {
@@ -55,6 +59,23 @@ response: {
     }
 
     3) /getAllTrips
+    request: {}
+    response: {
+        status:0,
+        data: {
+            [
+                { trip 1 },
+                { trip 2 },
+                ...
+            ]
+        }
+    }   
+    response: {
+        status: 1,
+        error: "Unable to run select in DB" | "Invalid session"
+    }
+
+    4) /getPublicTrips
     request: {}
     response: {
         status:0,
