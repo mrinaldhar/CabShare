@@ -99,7 +99,8 @@ request: {
     end_time: "String"
 	phone_number: "" or "String", 
 	travellers: "String",
-	comments: "String"
+	comments: "String",
+	private: "String" 		// It will have either Yes or No as value
 }
 response: {
 	status: 0, 
