@@ -115,6 +115,18 @@ if (!isLoggedIn()) {
 			</tr>
 
 			<tr>
+				<td width="30%">
+					Allow other people to see this trip<br />on the "All trips" page?
+				</td>
+				<td width="30%">
+					<select class="select_input" id="privacy" name="privacy">
+						<option> Yes </option>
+						<option> No </option>
+					</select>
+				</td>
+			</tr>
+
+			<tr>
 				<td valign="top" width="30%" colspan="2" style="vertical-align: top;">
 					<input type="submit" class="btn anim" value="Add this trip" />
 				</td>
@@ -140,14 +152,15 @@ if (!isLoggedIn()) {
 $('#form_table').submit(function() {        // What kind of name is form_table anyway. -md.
   console.log($('#phone').val());
   var data = {
-  source_addr: $('#autocomplete').val(),    // Rename these to the right things, sometime in the future. It doesn't look proper, does it. -md. 
+  source_addr: $('#autocomplete').val(),    // Rename these to the right things, sometime in the future. It doesn't look proper, does it. -Sherlock Holmes. 
   dest_addr: $('#autocomplete2').val(), 
   date: $('#datepicker').val(), 
   start_time: $('#start_time').val(),
   end_time: $('#end_time').val(),
   phone_number: $('#phone').val(), 
   travellers: $('#num_cotravel').val(),
-  comment: $('#comments').val()
+  comment: $('#comments').val(), 
+  "private": $('#privacy').val()
   }
   console.log(data);
   var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);

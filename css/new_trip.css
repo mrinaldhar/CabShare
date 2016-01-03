@@ -30,3 +30,8 @@
 	z-index: 1;
 	outline-width: 0px;
 }
+.select_input {
+	width: 100%;
+	padding: 10px;
+	outline-width: 0px;
+}

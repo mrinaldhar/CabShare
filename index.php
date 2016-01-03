@@ -3,6 +3,33 @@ session_start();
 require_once("./utils/ldap.php");
 require_once("./utils/userhelper.php");
 ?>
+<!-- 
+
+	Developed by Mrinal Dhar, backend by Amogh Pradeep.
+
+	Here's a nice poem: 
+
+
+	T'was the year of website rewrites,
+	When LTRC PINGed OSDG,
+	And the portal brothers, COURIER and CALENDAR found their long lost cousin COURSES,
+	And IIIT homepage sang in FELICITY,
+	Alas there was one feeling left out,
+	It knew what time of year it was,
+	The endsems over, everybody rushing back home,
+	But nobody wanted to be alone,
+	So they looked up to it, to find a companion,
+	But oh well, it was tired of their demands,
+	Having felt no love from them, it felt no obligation to give something to them,
+	Thus got everybody's rage at this holiday season,
+	Just about to go 500, when suddenly it was rediscovered.
+
+	http://cab.iiit.ac.in
+	
+	A New Years' present to all, and to all a good night.
+
+
+-->
 <!doctype html>
 <html>
 <head>
@@ -35,4 +62,19 @@ require_once("./utils/userhelper.php");
 </body>
 <script src="./js/jquery.js"></script>
 <script src="./js/jqueryui.js"></script>
+<script src="./js/helper.js"></script>
+<script src="./js/endpoints.js"></script>
+<script>
+$(document).ready(function() {
+  var count = ajaxCall(API_dir+API_count, {}, "GET", false);			// Yeah yeah, I know. Synchronous AJAX. I got lazy. Kill me. 
+  																		// TODO: Add support for a callback to be passed to ajaxCall 
+  																		// function or some people will keep crying over this. -_-
+  if (count["status"] == 0) {
+	  $('#completed_people').text(count["data"]["people"]+" people");
+	  $('#completed_trips').text(count["data"]["trips"]+" trips");
+  }  
+});
+
+</script>
+
 </html>

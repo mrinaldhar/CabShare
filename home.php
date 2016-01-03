@@ -149,7 +149,7 @@ if (!isLoggedIn()) {
 </div>
 <div id="page_content">
 <div id="tab_2_data" class="tab anim selected_data">
-<button class="btn anim" id="savepdfbtn">Download as PDF</button>		<!-- Use jsPDF to implement this. Should be simple. -md -->
+<button class="btn anim" id="savepdfbtn">Print this page.</button>		<!-- Use jsPDF to implement this. Should be simple. -md -->
 <br /><br />
 		<div id="map"></div>			
 		<div id="right-panel"></div>
@@ -180,7 +180,8 @@ $(document).ready(function() {
 	getAllTrips();
 	google.maps.event.trigger(map, 'resize');
 	$('#savepdfbtn').click(function() {
-		savePDF();
+		// savePDF();
+		window.print();
 	});
 });
 
