@@ -2,15 +2,10 @@
 session_start();
 require_once("ldap.php");
 require_once("userhelper.php");
+require_once("triphelper.php");
+
 
 function getAllTrips() { 
-    if(!isLoggedIn()) {
-        $response = array(
-            "status" => 1,
-            "error" => "Invalid session" );
-        echo json_encode($response);
-        return;
-    }
 
     include "config.php";
     $query = "SELECT * FROM " . $db_mysql_table_name . " ORDER BY id DESC";
