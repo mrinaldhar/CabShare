@@ -116,12 +116,14 @@ if (!isLoggedIn()) {
 
 			<tr>
 				<td width="30%">
-					Allow other people to see this trip<br />on the "All trips" page?
+					Hide this trip from other people<br />on the "All trips" page?<br />
+					<small>PRIVACY Note: Allowing this trip to show up on the "All Trips" page might help other travellers to directly contact you without using the CabShare matching algorithm. </small>
+
 				</td>
 				<td width="30%">
 					<select class="select_input" id="privacy" name="privacy">
-						<option> Yes </option>
-						<option> No </option>
+						<option> Yes - DONT show this trip on public page. </option>
+						<option> No - ALLOW other people to see this trip on public page. </option>
 					</select>
 				</td>
 			</tr>
