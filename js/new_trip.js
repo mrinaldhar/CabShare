@@ -77,3 +77,31 @@ function getTime(hours, minutes) {
 }
 slideTime();
   });
+
+$('#form_table').submit(function() {        // What kind of name is form_table anyway. -md.
+  console.log($('#phone').val());
+  var data = {
+  source_addr: $('#autocomplete').val(),    // Rename these to the right things, sometime in the future. It doesn't look proper, does it. -Sherlock Holmes. 
+  dest_addr: $('#autocomplete2').val(), 
+  date: $('#datepicker').val(), 
+  start_time: $('#start_time').val(),
+  end_time: $('#end_time').val(),
+  phone_number: $('#phone').val(), 
+  travellers: $('#num_cotravel').val(),
+  comment: $('#comments').val(), 
+  "private": $('#privacy').val()
+  }
+  console.log(data);
+  var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);
+  console.log(result);
+  if (result["status"] == 0) {
+    window.location="./home.php";
+  }
+  else {
+    alert("Problem. ");
+  }
+  return false;
+});
+function submitform_addTrip() {
+  
+}

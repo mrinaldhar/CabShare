@@ -1,0 +1,119 @@
+#page_title {
+	margin-bottom: 20px;
+}
+.tab_select {
+	text-align: center;
+	cursor: pointer;
+	padding: 7px;
+	font-size: 0.8em;
+	/*border: 1px dashed rgba(0,0,0,0.5);*/
+}
+.tab_select:hover {
+	/*background-color: rgba(0,0,0,0.8);*/
+	/*color: white;*/
+}
+.selected {
+	background-color: rgba(0,0,0,0.65);
+	color: white;
+
+}
+.container {
+	width: 50%;
+}
+#subtitle {
+	display: block;
+	font-size: 0.7em;
+	color: rgba(0,0,0,0.5);
+}
+.tab {
+	margin-top: 10px;
+	font-size: 0.8em;
+	display: none;
+	text-align: center;
+}
+.selected_data {
+	display: block;
+}
+#map {
+	height: 500px;
+}
+#sidebar {
+	position: fixed;
+	right: 0px;
+	top: 100px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-radius: 1px;
+	display: block;
+	max-width: 30%;
+	width: 30%;
+	background-color: rgba(255,255,255,0.8);
+	box-shadow: 0 0 1px black;
+	height: 70%;
+	max-height: 70%;
+}
+#sidebar ul {
+	list-style-type: none;
+	padding: 0px;
+	max-height: 90%;
+	height: 90%;
+	overflow: scroll;
+}
+#sidebar ul li {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	cursor: pointer;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 0.9em;
+}
+#sidebar ul li:hover {
+	background-color: rgba(0,0,0,0.1);
+
+
+}
+#sidebar p {
+	/*font-size: 0.9em;*/
+	padding-left: 20px;
+	color: rgba(0,0,0,0.7);
+}
+#right-panel {
+	width: 100%;
+	display: block;
+	text-align: center;
+}
+#container {
+	padding-bottom: 50px;
+}
+#matched_results {
+	text-align: center;
+	list-style-type: none;
+	padding: 0px;
+}
+#matched_results li {
+	display: block; color: rgba(0,0,0,0.5); border-bottom-width: 1px; border-bottom-color: #4a4a4a; border-bottom-style: dashed; padding: 20px;
+}
+.matched_route {
+	display: block; width: 100%; font-size: 0.9em; color: rgba(0,0,0,0.5);
+}
+.matched_name {
+display: block; width: 100%; color: rgba(0,0,0,1); font-size: 1.3em;
+
+}
+.matched_contact {
+	display: block; width: 100%; color: rgba(0,0,0,1); margin-bottom: 5px; font-size: 0.9em;
+}
+.matched_details {
+	display: block; width: 100%; font-size: 0.9em;
+}
+.adp-directions {
+	width: 100%;
+	max-width: 100%;
+}
+#page_subtitle {
+	font-size: 0.35em;
+	margin-top: 20px;
+} 
+a {
+	color: black;
+}
