@@ -5,7 +5,7 @@ require_once("userhelper.php");
 require_once("triphelper.php");
 
 
-function getAllTrips() { 
+function getCount() { 
 
     include "config.php";
     $query = "SELECT * FROM " . $db_mysql_table_name . " ORDER BY id DESC";
@@ -35,5 +35,5 @@ function getAllTrips() {
     }
 }
 
-getAllTrips();
+getCount();
 ?>

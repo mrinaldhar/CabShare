@@ -3,7 +3,7 @@ session_start();
 require_once("ldap.php");
 require_once("userhelper.php");
 
-function getAllTrips() { 
+function getPublicTrips() { 
     if(!isLoggedIn()) {
         $response = array(
             "status" => 1,
@@ -34,5 +34,5 @@ function getAllTrips() {
     }
 }
 
-getAllTrips();
+getPublicTrips();
 ?>
