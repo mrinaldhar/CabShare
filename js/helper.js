@@ -48,3 +48,30 @@ vars[key] = value;
 });
 return vars;
 }
+
+function getAMPM(timeval) {
+    var hours = parseInt(parseInt(timeval)/100);
+    var minutes = parseInt(timeval)%100;
+    var time = null;
+    minutes = minutes + "";
+    if (hours < 12) {
+        time = "AM";
+    }
+    else {
+        time = "PM";
+    }
+    if (hours == 0) {
+        hours = 12;
+    }
+    if (hours > 12) {
+        hours = hours - 12;
+    }
+    if (minutes.length == 1) {
+        minutes = "0" + minutes;
+    }
+    return hours + ":" + minutes + " " + time;
+}
+
+function tripGOTO(tripID) {
+  window.location = "./home.php?id="+tripID;
+}

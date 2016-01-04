@@ -104,8 +104,7 @@ if (!isLoggedIn()) {
 	padding-bottom: 50px;
 }
 #matched_results {
-	list-style-type: none;
-	padding: 0px;
+	list-style-type: none; width: 100%; text-align: center; padding: 0px;
 }
 #matched_results li {
 	display: block;
@@ -160,7 +159,7 @@ if (!isLoggedIn()) {
 
 
 <div id="sidebar">
-	<p>Your previous trips</p>
+	<p>Your CabShare trips</p>
 	<ul>
 	</ul>
 </div>
@@ -176,9 +175,15 @@ if (!isLoggedIn()) {
 var SOURCE_ADDR, DEST_ADDR;
 
 $(document).ready(function() {
-	getTrip(-1);
+	var tripID = getUrlVars()["id"];
+	if (tripID) {
+		getTrip(tripID);
+	}
+	else {
+		getTrip(-1);		
+	}
 	getAllTrips();
-	google.maps.event.trigger(map, 'resize');
+	// google.maps.event.trigger(map, 'resize');
 	$('#savepdfbtn').click(function() {
 		// savePDF();
 		window.print();
@@ -200,10 +205,6 @@ function getTrip(tripID) {
 			trip_id: tripID
 		}
 		var result = ajaxCall(API_dir+API_getTrip, data, "GET", false);
-		SOURCE_ADDR = result["source_addr"];
-		DEST_ADDR = result["dest_addr"];
-		TRIP_LOADED = 1;
-		initMap();
 	}
 	else {
 		var data = {};
@@ -222,7 +223,7 @@ function getTrip(tripID) {
 	TRIP_LOADED = 1;
 	// matchTrip(result["id"]);
 	$('#page_title').html("Trip from <span class='loc'>"+ getShortAddr(result["source_addr"]) + "</span> to <span class='loc'>" + getShortAddr(result["dest_addr"]) + "</span>");
-	$('#page_title').append("<span id='subtitle'>"+result["travellers"]+" people travelling on "+result["date"]+" during "+result["start_time"]+" - " + result["end_time"] + "<br />\
+	$('#page_title').append("<span id='subtitle'>"+result["travellers"]+" people travelling on "+result["date"]+" during "+getAMPM(result["start_time"])+" - " + getAMPM(result["end_time"]) + "<br />\
 		</span>");
 }
 
@@ -232,8 +233,8 @@ function getAllTrips() {
 		results = results["data"];
 		for (var x=0; x<results.length; x++) {
 		var current = results[x];
-		$('#sidebar ul').append("<li onclick='getTrip("+current["id"]+")' class='anim'>"+getShortAddr(current["source_addr"])+" to "+getShortAddr(current["dest_addr"]) +"\
-			<span id='subtitle'>"+current["travellers"]+" people travelling on "+current["date"]+" during "+current["start_time"]+" - " + current["end_time"] + "</li>");
+		$('#sidebar ul').append("<li onclick='tripGOTO("+current["id"]+")' class='anim'>"+getShortAddr(current["source_addr"])+" to "+getShortAddr(current["dest_addr"]) +"\
+			<span id='subtitle'>"+current["travellers"]+" people travelling on "+current["date"]+" during "+getAMPM(current["start_time"])+" - " + getAMPM(current["end_time"]) + "</li>");
 
 		}
 	}
