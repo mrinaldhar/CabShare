@@ -7,9 +7,6 @@ require_once("./utils/userhelper.php");
 
 	Developed by Mrinal Dhar, backend by Amogh Pradeep.
 
-	Here's a nice poem: 
-
-
 	T'was the year of website rewrites,
 	When LTRC PINGed OSDG,
 	And the portal brothers, COURIER and CALENDAR found their long lost cousin COURSES,
@@ -36,13 +33,15 @@ require_once("./utils/userhelper.php");
 <title>Cab Share</title>
 <link rel="stylesheet" href="./css/global.css" />
 <link rel="stylesheet" href="./css/index.css" />
-<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-<link rel="icon" href="./favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+<link rel="icon" href="./favicon.png" type="image/x-icon">
+
 </head>
 <body>
 <?php require_once('header.php'); ?>
 
 <div class="container">
+
 <form id="login_form" action="login.php" method="POST">
 	<span id="page_title">Login using your IIIT-H credentials</span>
 	<span id="page_content">
@@ -66,6 +65,7 @@ require_once("./utils/userhelper.php");
 <script src="./js/jqueryui.js"></script>
 <script src="./js/helper.js"></script>
 <script src="./js/endpoints.js"></script>
+
 <script>
 $(document).ready(function() {
   var count = ajaxCall(API_dir+API_count, {}, "GET", false);			// Yeah yeah, I know. Synchronous AJAX. I got lazy. Kill me. 
