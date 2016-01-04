@@ -36,6 +36,8 @@ require_once("./utils/userhelper.php");
 <title>Cab Share</title>
 <link rel="stylesheet" href="./css/global.css" />
 <link rel="stylesheet" href="./css/index.css" />
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <body>
 <?php require_once('header.php'); ?>

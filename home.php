@@ -12,6 +12,8 @@ if (!isLoggedIn()) {
 <head>
 <title>Cab Share</title>
 <link rel="stylesheet" href="./css/global.css" />
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
 <style>
 #page_title {
 	margin-bottom: 20px;

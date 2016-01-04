@@ -16,6 +16,8 @@ if (!isLoggedIn()) {
 <link rel="stylesheet" href="./css/datetheme.css" />
 <link rel="stylesheet" href="./css/jqueryui.css" />
 <link rel="stylesheet" href="./css/new_trip.css" />
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
 </head>
 <body>
 <?php require_once('header.php'); ?>

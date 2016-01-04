@@ -12,6 +12,8 @@ if (!isLoggedIn()) {
 <head>
 <title>Cab Share</title>
 <link rel="stylesheet" href="./css/global.css" />
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
 <style>
 #page_title {
 	margin-bottom: 20px;
@@ -111,7 +113,7 @@ if (!isLoggedIn()) {
 	display: block; width: 100%; font-size: 0.9em; color: rgba(0,0,0,0.5);
 }
 .matched_name {
-display: block; width: 100%; color: rgba(0,0,0,1); font-size: 1.5em;
+display: block; width: 100%; color: rgba(0,0,0,1); font-size: 1.3em;
 
 }
 .matched_contact {
@@ -125,7 +127,8 @@ display: block; width: 100%; color: rgba(0,0,0,1); font-size: 1.5em;
 	max-width: 100%;
 }
 #page_subtitle {
-	font-size: 0.8em;
+	font-size: 0.35em;
+	margin-top: 20px;
 } 
 a {
 	color: black;
@@ -138,9 +141,10 @@ a {
 <div class="container" id="toPrint">
 <div id="page_title">
 All upcoming public trips
-</div>
+
 <div id="page_subtitle">
 This page shows you the trips other people have added on CabShare, with privacy set to PUBLIC.<br />If you see a trip that you would like to join, please feel free to contact the person listed.
+</div>
 </div>
 <div id="page_content">
 	<ul id="matched_results">
