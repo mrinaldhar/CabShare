@@ -73,7 +73,8 @@
 	font-size: 0.9em;
 }
 #sidebar ul li:hover {
-	background-color: rgba(0,0,0,0.1);
+	background-color: #1976D2;
+	color: white;
 
 
 }
@@ -87,7 +88,7 @@
 	display: block;
 	text-align: center;
 	padding-bottom: 50px;
-	
+
 }
 #container {
 	padding-bottom: 50px;

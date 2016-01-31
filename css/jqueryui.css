@@ -1,7 +1,7 @@
 /*! jQuery UI - v1.11.4 - 2015-12-05
 * http://jqueryui.com
 * Includes: core.css, draggable.css, resizable.css, selectable.css, sortable.css, accordion.css, autocomplete.css, button.css, datepicker.css, dialog.css, menu.css, progressbar.css, selectmenu.css, slider.css, spinner.css, tabs.css, tooltip.css, theme.css
-* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Verdana%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=3px&bgColorHeader=%230091EA&bgTextureHeader=highlight_soft&bgImgOpacityHeader=0&borderColorHeader=%23ffffff&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=0&borderColorContent=%23000000&fcContent=%23222222&iconColorContent=%23222222&bgColorDefault=%23e6e6e6&bgTextureDefault=glass&bgImgOpacityDefault=75&borderColorDefault=%23d3d3d3&fcDefault=%23555555&iconColorDefault=%23888888&bgColorHover=%23dadada&bgTextureHover=glass&bgImgOpacityHover=20&borderColorHover=%23999999&fcHover=%23212121&iconColorHover=%23454545&bgColorActive=%230091EA&bgTextureActive=glass&bgImgOpacityActive=20&borderColorActive=%23ffffff&fcActive=%23ffffff&iconColorActive=%23454545&bgColorHighlight=%23ffffff&bgTextureHighlight=glass&bgImgOpacityHighlight=20&borderColorHighlight=%23000000&fcHighlight=%23000000&iconColorHighlight=%230091EA&bgColorError=%23fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=%23cd0a0a&fcError=%23cd0a0a&iconColorError=%23cd0a0a&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=%23aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Verdana%2CArial%2Csans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=3px&bgColorHeader=%231976D2&bgTextureHeader=highlight_soft&bgImgOpacityHeader=0&borderColorHeader=%23ffffff&fcHeader=%23ffffff&iconColorHeader=%23ffffff&bgColorContent=%23ffffff&bgTextureContent=flat&bgImgOpacityContent=0&borderColorContent=%23000000&fcContent=%23222222&iconColorContent=%23222222&bgColorDefault=%23e6e6e6&bgTextureDefault=glass&bgImgOpacityDefault=75&borderColorDefault=%23d3d3d3&fcDefault=%23555555&iconColorDefault=%23888888&bgColorHover=%23dadada&bgTextureHover=glass&bgImgOpacityHover=20&borderColorHover=%23999999&fcHover=%23212121&iconColorHover=%23454545&bgColorActive=%231976D2&bgTextureActive=glass&bgImgOpacityActive=20&borderColorActive=%23ffffff&fcActive=%23ffffff&iconColorActive=%23454545&bgColorHighlight=%23ffffff&bgTextureHighlight=glass&bgImgOpacityHighlight=20&borderColorHighlight=%23000000&fcHighlight=%23000000&iconColorHighlight=%231976D2&bgColorError=%23fef1ec&bgTextureError=glass&bgImgOpacityError=95&borderColorError=%23cd0a0a&fcError=%23cd0a0a&iconColorError=%23cd0a0a&bgColorOverlay=%23aaaaaa&bgTextureOverlay=flat&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=%23aaaaaa&bgTextureShadow=flat&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
 * Copyright jQuery Foundation and other contributors; Licensed MIT */
 
 /* Layout helpers
@@ -853,7 +853,7 @@ body .ui-tooltip {
 }
 .ui-widget-header {
 	border: 1px solid #ffffff;
-	background: #0091EA url("images/ui-bg_highlight-soft_0_0091EA_1x100.png") 50% 50% repeat-x;
+	background: #1976D2 url("images/ui-bg_highlight-soft_0_1976D2_1x100.png") 50% 50% repeat-x;
 	color: #ffffff;
 	font-weight: bold;
 }
@@ -903,7 +903,7 @@ body .ui-tooltip {
 .ui-widget-content .ui-state-active,
 .ui-widget-header .ui-state-active {
 	border: 1px solid #ffffff;
-	background: #0091EA url("images/ui-bg_glass_20_0091EA_1x400.png") 50% 50% repeat-x;
+	background: #1976D2 url("images/ui-bg_glass_20_1976D2_1x400.png") 50% 50% repeat-x;
 	font-weight: normal;
 	color: #ffffff;
 }
@@ -994,7 +994,7 @@ body .ui-tooltip {
 	background-image: url("images/ui-icons_454545_256x240.png");
 }
 .ui-state-highlight .ui-icon {
-	background-image: url("images/ui-icons_0091EA_256x240.png");
+	background-image: url("images/ui-icons_1976D2_256x240.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
