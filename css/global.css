@@ -13,8 +13,14 @@ body, html {
 	margin: 0;
 	overflow: none;
 	font-family: myriadpro;
-	background-color: #e0e0e0;
+	/*background-color: #e0e0e0;*/
+
 }
+body {
+  background: url('../bgtile.png');
+
+}
+
 .footer {
 	position: fixed;
 	bottom: 0px;
@@ -44,7 +50,7 @@ body, html {
 	top: 0px;
 	width: 100%;
 	left: 0px;
-	border-bottom: 3px solid #0091EA;
+	border-bottom: 2px solid #0091EA;
 	background-color: rgba(0,0,0,0.8);
 	color: white;
 	padding: 7px;
@@ -61,7 +67,7 @@ body, html {
 	padding-left: 5px;
 }
 .header .btn {
-	border: 1px solid #0091EA;
+	border: 2px solid #0091EA;
 	box-shadow: 0 0 3px black;
 }
 .btn {
@@ -75,11 +81,11 @@ body, html {
 	color: white;
 	font-family: myriadpro;
 	cursor: pointer;
-	border: 1px solid black;
+	border: 2px solid black;
 }
 .btn:hover {
 	color: black;
-	border: 1px solid black;
+	border: 2px solid black;
 	background-color: rgba(255,255,255,0.9);
 }
 .anim {
@@ -99,7 +105,9 @@ body, html {
 	padding: 20px;
 	border-radius: 1px;
 	background-color: rgba(255,255,255,0.8);
-	box-shadow: 0 0 1px black;
+	/*box-shadow: 0 0 1px black;*/
+	border: 2px solid black;
+	border-radius: 3px;
 }
 #page_title {
 	font-family: myriadpro;
@@ -135,7 +143,7 @@ input {
 	padding-top: 7px;
 	padding-bottom: 7px;
 	padding-left: 10px;
-	border: 1px solid #bcbcbc;
+	border: 2px solid #bcbcbc;
 	/*border-radius: 1px;*/
 	font-family: myriadpro;
 	outline-width: 0px;
