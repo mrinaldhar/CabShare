@@ -35,15 +35,10 @@ function getAllTrips() {
 function getPublicTrips() {
 	var results = ajaxCall(API_dir+API_getPublicTrips, {}, "GET", false);
 	console.log(results);
-	var now = new Date();
 	if (results["status"] == 0) {
 		results = results["data"];
 		for (var x=0; x<results.length; x++) {
 		var current = results[x];
-		var selectedDate = new Date(current["date"]);
-		if (selectedDate < now) {
-			continue;
-		}
 		$('#matched_results').append('<li>\
 			<span class="matched_name">'+current["username"]+'</span>\
 			<span class="matched_contact"><a href="mailto:'+current["userid"]+'">'+current["userid"]+'</a> &bull; '+current["phone"]+'</span>\
