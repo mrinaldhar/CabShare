@@ -51,7 +51,9 @@
 	max-width: 30%;
 	width: 30%;
 	background-color: rgba(255,255,255,0.8);
-	box-shadow: 0 0 1px black;
+	/*box-shadow: 0 0 1px black;*/
+	border: 2px solid black;
+	border-radius: 3px;
 	height: 70%;
 	max-height: 70%;
 }
@@ -71,12 +73,13 @@
 	font-size: 0.9em;
 }
 #sidebar ul li:hover {
-	background-color: rgba(0,0,0,0.1);
+	background-color: #1976D2;
+	color: white;
 
 
 }
 #sidebar p {
-	/*font-size: 0.9em;*/
+	font-size: 1.1em;
 	padding-left: 20px;
 	color: rgba(0,0,0,0.7);
 }
@@ -84,6 +87,8 @@
 	width: 100%;
 	display: block;
 	text-align: center;
+	padding-bottom: 50px;
+
 }
 #container {
 	padding-bottom: 50px;

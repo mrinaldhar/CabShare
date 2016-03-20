@@ -7,25 +7,6 @@ require_once("./utils/userhelper.php");
 
 	Developed by Mrinal Dhar, backend by Amogh Pradeep.
 
-	T'was the year of website rewrites,
-	When LTRC PINGed OSDG,
-	And the portal brothers, COURIER and CALENDAR found their long lost cousin COURSES,
-	And IIIT homepage sang in FELICITY,
-	Alas there was one feeling left out,
-	It knew what time of year it was,
-	The endsems over, everybody rushing back home,
-	But nobody wanted to be alone,
-	So they looked up to it, to find a companion,
-	But oh well, it was tired of their demands,
-	Having felt no love from them, it felt no obligation to give something to them,
-	Thus got everybody's rage at this holiday season,
-	Just about to go 500, when suddenly it was rediscovered.
-
-	http://cab.iiit.ac.in
-	
-	A New Years' present to all, and to all a good night.
-
-
 -->
 <!doctype html>
 <html>
