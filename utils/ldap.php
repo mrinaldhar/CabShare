@@ -1,7 +1,7 @@
 <?php
 require_once('userhelper.php');
 function iiit_username_clean($user) {
-	$s = explode("@",$str);
+	$s = explode("@",$user);
 	return $s[0];
 }
 function login($user, $password) {
