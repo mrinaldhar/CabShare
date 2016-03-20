@@ -75,7 +75,7 @@ function initMap() {
   };
 	// document.getElementById('autocomplete2').addEventListener('change', function() { console.log('hi'); });
   // document.getElementById('start').addEventListener('onFocus', onChangeHandler);
-  document.getElementById('autocomplete').addEventListener('change', onChangeHandler);
+//  document.getElementById('autocomplete').addEventListener('change', onChangeHandler);
 
   document.getElementById('autocomplete2').addEventListener('change', onChangeHandler);
 }

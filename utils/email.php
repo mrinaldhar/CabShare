@@ -12,12 +12,12 @@ function getShortAddr($longAddr) {
 
 
 function send_email($to, $result) {
-
+	var_dump($result);
 	$result = json_decode($result, true);
-
+	var_dump($result);
 	if ($result["status"] == 0) {
 			$headers = array("From: alerts@cabs.iiit.ac.in",
-			    "Reply-To: no-reply@cabs.iiit.ac.in",
+			    "Reply-To: mdhr@osdg.iiit.ac.in",
 			    "X-Mailer: PHP/" . PHP_VERSION, 
 			    "Content-Type: text/html; charset=ISO-8859-1",
 			    "MIME-Version: 1.0"
@@ -36,7 +36,7 @@ function send_email($to, $result) {
 		$message .= '				<table width="60%">';
 		$message .= '					<tr>';
 		$message .= '						<td width="100%" align="center">';
-		$message .= '							<h1> <a href="http://cabs.iiit.ac.in/" style="color: #3e3e3e;">CabShare</a> </h1>';
+		$message .= '							<h1> <a href="http://osdg.iiit.ac.in/cabs/" style="color: #3e3e3e;">CabShare</a> </h1>';
 		$message .= '						</td>';
 		$message .= '					</tr>';
 		$message .= '					<tr>';
@@ -52,7 +52,7 @@ function send_email($to, $result) {
 
 		foreach($data as $current) {
 			$message .= '							<li style="display: block; color: rgba(0,0,0,0.5); border-bottom-width: 1px; border-bottom-color: #4a4a4a; border-bottom-style: dashed; padding: 20px;">';
-			$message .= '								<span class="matched_name" style="display: block; width: 100%; color: rgba(0,0,0,1); font-size: 1.5em;">' . $current["userid"] . '</span>';
+			$message .= '								<span class="matched_name" style="display: block; width: 100%; color: rgba(0,0,0,1); font-size: 1.5em;">' . $current["username"] . '</span>';
 			$message .= '								<span class="matched_contact" style="display: block; width: 100%; color: rgba(0,0,0,1); margin-bottom: 5px; font-size: 0.9em;"><a href="mailto:' . $current["userid"] . '" style="color: black;">' . $current["userid"] . '</a> &bull; ' . $current["phone"] . '</span>';
 			$message .= '								<span class="matched_route" style="display: block; width: 100%; font-size: 0.9em; color: rgba(0,0,0,0.5);">' . getShortAddr($current["source_addr"]) . ' to ' . getShortAddr($current["dest_addr"]) . ' &bull; ' . $current["start_time"] . ' - ' . $current["end_time"] . '</span>';
 			$message .= '								<span class="matched_details" style="display: block; width: 100%; font-size: 0.9em;">' . $current["travellers"] . ' travellers &bull; ' . $current["comment"] . '</span>';
@@ -84,6 +84,7 @@ function send_email($to, $result) {
 // 	"status" => 0, 
 // 	"data" => array(
 // 		array(
+//		"username" => "Mrinal Dhar",
 // 		"userid" => "mrinal.dhar",
 // 		"start_time" => 1211,
 // 		"end_time" => 1222, 

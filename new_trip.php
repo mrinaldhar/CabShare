@@ -124,15 +124,15 @@ if (!isLoggedIn()) {
 				</td>
 				<td width="30%">
 					<select class="select_input" id="privacy" name="privacy">
-						<option> Yes - DONT show this trip on public page. </option>
 						<option> No - ALLOW other people to see this trip on public page. </option>
+						<option> Yes - DONT show this trip on public page. </option>
 					</select>
 				</td>
 			</tr>
 
 			<tr>
 				<td valign="top" width="30%" colspan="2" style="vertical-align: top;">
-					<input type="submit" class="btn anim" value="Add this trip" />
+					<input id="submit_btn" type="submit" class="btn anim" value="Add this trip" />
 				</td>
 			</tr>
 

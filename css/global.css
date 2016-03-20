@@ -17,6 +17,7 @@ body, html {
 
 }
 body {
+  margin-bottom: 50px;
   background: url('../bgtile.png');
 
 }
