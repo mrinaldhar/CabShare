@@ -1,5 +1,5 @@
 $(function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({minDate:0});
     function slideTime(event, ui){
     var val0 = $("#slider-range").slider("values", 0),
         val1 = $("#slider-range").slider("values", 1),
@@ -89,18 +89,27 @@ $('#form_table').submit(function() {        // What kind of name is form_table a
   phone_number: $('#phone').val(), 
   travellers: $('#num_cotravel').val(),
   comment: $('#comments').val(), 
-  "private": $('#privacy').val()
+  "private": $('#privacy').val().split(' - ')[0]
   }
   console.log(data);
-  var result = ajaxCall(API_dir+API_addTrip, data, "POST", false);
+  if (data["source_addr"]!="" && data["dest_addr"]!="" && data["data"]!="" && data["start_time"]!="" && data["end_time"]!="") {  
+   $('#submit_btn').val("Adding trip and finding matches...");   
+var result = ajaxCall(API_dir+API_addTrip, data, "POST", true);
   console.log(result);
-  if (result["status"] == 0) {
-    window.location="./home.php";
-  }
-  else {
-    alert("Problem. ");
-  }
+// if (result["status"] == 0) {
+   window.setTimeout(function() {
+     window.location="./home.php";
+   }, 5000);
+//  }
+//  else {
+//    alert("Problem. Retry maybe? ");
+//return false;
+// }
+}
+else {
+  alert("Some required fields were left empty.");
   return false;
+}
 });
 function submitform_addTrip() {
   

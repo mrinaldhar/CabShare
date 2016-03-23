@@ -37,7 +37,7 @@ function getTrip(tripID) {
 		var result = ajaxCall(API_dir+API_getLatestTrip, data, "GET", false);
 	}
 	console.log(result);
-	
+	if (result !=null) {	
 	if (result["status"] == 0) {
 		result = result["data"];
 	}
@@ -48,9 +48,14 @@ function getTrip(tripID) {
 	DEST_ADDR = result["dest_addr"];
 	TRIP_LOADED = 1;
 	// matchTrip(result["id"]);
+console.log(result["data"]);
 	$('#page_title').html("Trip from <span class='loc'>"+ getShortAddr(result["source_addr"]) + "</span> to <span class='loc'>" + getShortAddr(result["dest_addr"]) + "</span>");
 	$('#page_title').append("<span id='subtitle'>"+result["travellers"]+" people travelling on "+result["date"]+" during "+getAMPM(result["start_time"])+" - " + getAMPM(result["end_time"]) + "<br />\
 		</span>");
+}
+else {
+$('#page_title').html("No trips created yet!");
+}
 }
 
 function getAllTrips() {

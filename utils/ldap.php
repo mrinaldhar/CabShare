@@ -1,10 +1,14 @@
 <?php
 require_once('userhelper.php');
+function iiit_username_clean($user) {
+	$s = explode("@",$user);
+	return $s[0];
+}
 function login($user, $password) {
 
 
 	if(empty($user) || empty($password)) return false;
-
+	$user = iiit_username_clean($user);
 	$ldap_host = "ldap.iiit.ac.in";
 	$ldap_port = "636";
  

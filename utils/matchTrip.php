@@ -57,23 +57,29 @@ function matchTrip($tripId) {
 
     $query = "SELECT * FROM " . $db_mysql_table_name . 
         " WHERE state=0" .
-        " AND userid!='" . getUid() . "'" .
+        // " AND userid!='" . getUid() . "'" .
         " AND date='" . getTripDate($matchTrip) . "'"; // Ensures rides are on the same day.
 
 	$success = mysqli_query($link, $query);
+	$rows = array();
 	if($success) {
-        $rows = array();
-        while ($row = mysqli_fetch_assoc($success)) {
-            if(timeCoincides($row, $matchTrip)) { // Ensures that they start at around the same time.
-                if(getDistance(getDestAddr($row), getDestAddr($matchTrip)) <= 3000) {
-                    if(getDistance(getSourceAddr($row), getSourceAddr($matchTrip)) <= 3000) {
-                       $rows[] = $row;
+            while ($row = mysqli_fetch_assoc($success)) {
+                if(timeCoincides($row, $matchTrip)) { // Ensures that they start at around the same time.
+                    if(getDistance(getDestAddr($row), getDestAddr($matchTrip)) <= 3000) {
+                        if(getDistance(getSourceAddr($row), getSourceAddr($matchTrip)) <= 3000) {
+                            $rows[] = $row;
+                        }
                     }
-                }
+              	}
             }
-        }
-        $rows = json_encode($rows);
-        send_email(getMailId(), $rows);
+	$response = array(
+            "status" => 0,
+            "data" => $rows);
+        $response = json_encode($response);
+	foreach ($rows as $match) {
+	    send_email(getUserId($match), $response);
+	}
+        send_email(getMailId(), $response);
     }
     else {
         $response = array(
