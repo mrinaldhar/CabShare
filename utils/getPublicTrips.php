@@ -13,7 +13,7 @@ function getPublicTrips() {
     }
 
     include "config.php";
-    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE private='No' ORDER BY id DESC";
+    $query = "SELECT * FROM " . $db_mysql_table_name . " WHERE private='No' AND STR_TO_DATE(date,'%m/%d/%Y') >= DATE_FORMAT(NOW(),'%Y-%m-%d') ORDER BY id DESC";
 
 	$success = mysqli_query($link, $query);
 	if($success) {

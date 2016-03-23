@@ -1,5 +1,5 @@
 $(function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({minDate:0});
     function slideTime(event, ui){
     var val0 = $("#slider-range").slider("values", 0),
         val1 = $("#slider-range").slider("values", 1),
