@@ -8,6 +8,8 @@ require_once("keys.php");
 require_once("email.php");
 
 function getDistance($address1, $address2) {
+    global $mapsAPIKey;
+
     $url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" . $address1 . "&destinations=" . $address2 ."&mode=driving&key=" . $mapsAPIKey;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
@@ -57,31 +59,36 @@ function matchTrip($tripId) {
 
     $query = "SELECT * FROM " . $db_mysql_table_name . 
         " WHERE state=0" .
-        // " AND userid!='" . getUid() . "'" .
+        " AND id!='" . $tripId . "'" .   // Ensures that the same trip which is created does not get matched.
         " AND date='" . getTripDate($matchTrip) . "'"; // Ensures rides are on the same day.
 
-	$success = mysqli_query($link, $query);
-	$rows = array();
-	if($success) {
-            while ($row = mysqli_fetch_assoc($success)) {
-                if(timeCoincides($row, $matchTrip)) { // Ensures that they start at around the same time.
-                    if(getDistance(getDestAddr($row), getDestAddr($matchTrip)) <= 3000) {
-                        if(getDistance(getSourceAddr($row), getSourceAddr($matchTrip)) <= 3000) {
-                            $rows[] = $row;
-                        }
+    $success = mysqli_query($link, $query);
+    $rows = array();
+    if($success) {
+        while ($row = mysqli_fetch_assoc($success)) {
+            if(timeCoincides($row, $matchTrip)) { // Ensures that they start at around the same time.
+                if(getDistance(getDestAddr($row), getDestAddr($matchTrip)) <= 3000) {
+                    if(getDistance(getSourceAddr($row), getSourceAddr($matchTrip)) <= 3000) {
+                        $rows[] = $row;
                     }
-              	}
+                }
             }
-	$response = array(
+        }
+        $response = array(
             "status" => 0,
             "data" => $rows);
         $response = json_encode($response);
-	foreach ($rows as $match) {
-	    send_email(getUserId($match), $response);
-	}
-        send_email(getMailId(), $response);
-    }
-    else {
+        foreach ($rows as $match) {
+            send_email(getUserId($match), $response);
+        }
+
+        if (!empty( $playerlist )) {  // Do not send email if no match found
+            send_email(getMailId(), $response);
+        } else {
+            // Send email of no match if needed.
+        }
+        echo json_encode($response);
+    } else {
         $response = array(
             "status" => 1,
             "error" => "Unable to run query in DB" );
