@@ -92,7 +92,7 @@ $('#form_table').submit(function() {        // What kind of name is form_table a
   "private": $('#privacy').val().split(' - ')[0]
   }
   console.log(data);
-  if (data["source_addr"]!="" && data["dest_addr"]!="" && data["data"]!="" && data["start_time"]!="" && data["end_time"]!="") {  
+  if (data["source_addr"]!=="" && data["dest_addr"]!=="" && data["data"]!=="" && data["start_time"]!=="" && data["end_time"]!=="" && data["travellers"]!=="") {  
    $('#submit_btn').val("Adding trip and finding matches...");   
 var result = ajaxCall(API_dir+API_addTrip, data, "POST", true);
   console.log(result);
